@@ -25,18 +25,18 @@ void WorldParser::Parse(string path)
     for (int i = 0; i < bodyCount; i ++)
     {
         // define
-        int t;
+        string t;
         int l;
         POLY_DATA verts;
         Vector2 pos;
         SCALAR rot;
 
         // parse
-        t = bodies[i]["TYPE"].asInt();
+        t = bodies[i]["TYPE"].asString();
         l = bodies[i]["LAYER"].asInt();
         int vertCount = bodies[i]["VERTICES"].size();
 
-        for (int v; v < vertCount; v ++)
+        for (int v = 0; v < vertCount; v ++)
         {
             vector<string> coord = Split(root["BODIES"][i]["VERTICES"][v].asString(), ',');
             Vector2 vec = {stod(coord[0]), stod(coord[1])};
@@ -44,7 +44,7 @@ void WorldParser::Parse(string path)
         }
         vector<string> coord = Split(bodies[i]["POSITION"].asString(), ',');
         pos = {stod(coord[0]), stod(coord[1])};
-        rot = bodies[i]['ROTATION'].asDouble();
+        rot = bodies[i]["ROTATION"].asDouble();
 
     }
     

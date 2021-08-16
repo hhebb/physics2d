@@ -9,7 +9,6 @@
 int main(int argc, char **argv) {
 
 	QApplication app(argc, argv);
-
 	TestWindow* window = new TestWindow();
 	World* world = new World();
 	TestApp testApp(window, world);

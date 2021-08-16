@@ -3,6 +3,11 @@
 
 # include <QThread>
 # include <QVariant>
+# include <jsoncpp/json/json.h>
+# include <fstream>
+# include <iostream>
+# include <sstream>
+
 # include "Body.hpp"
 # include "Collider.hpp"
 # include "Collision.hpp"
@@ -18,6 +23,14 @@ class World: public QThread
 signals:
     void physicsUpdate(QVariant);
 private:
+    // custom parse
+    string testName;
+    vector<POLY_DATA> polys;
+    vector<Vector2> positions;
+    vector<SCALAR> rotations;
+    vector<BodyType> bTypes;
+    vector<int> layers;
+
     vector<Body> bodies;
     Command command;
     POLY_LIST vertices;
@@ -32,6 +45,8 @@ private:
 public:
     bool ready;
     World();
+    void Parse(string path);
+    vector<string> Split(string str, char delim);
     void Init();
     void Reset();
     void Step();
