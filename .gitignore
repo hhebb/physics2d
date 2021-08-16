@@ -15,6 +15,7 @@ c_cpp_properties.json
 settings.json
 launch.json
 tasks.json
+TODO.txt
 
 ### CMake Patch ###
 # External projects
