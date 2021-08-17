@@ -33,7 +33,7 @@
 					]
 				}
 			],
-			"name" : "",
+			"name" : "Debug",
 			"projects" : 
 			[
 				{
@@ -55,14 +55,14 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "physics_test::@34f2cdab1f9523365291",
-					"jsonFile" : "target-physics_test-13ec738c6c5f9996e362.json",
+					"jsonFile" : "target-physics_test-Debug-d0510d91931608e8cbcd.json",
 					"name" : "physics_test",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "physics_test_autogen::@34f2cdab1f9523365291",
-					"jsonFile" : "target-physics_test_autogen-f3fa3a5120ded9b0d1a0.json",
+					"jsonFile" : "target-physics_test_autogen-Debug-f3fa3a5120ded9b0d1a0.json",
 					"name" : "physics_test_autogen",
 					"projectIndex" : 0
 				}

@@ -1,0 +1,76 @@
+{
+    "TEST_NAME": "chain",
+    "BODIES": [
+      {
+        "TYPE": 2,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "2.0, 0.0",
+          "2.0, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.0, 0.65",
+        "ROTATION": 0
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "0.5, 0.0",
+          "0.5, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "-0.1, 0.0",
+        "ROTATION": 45
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "0.5, 0.0",
+          "0.5, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "-0.1, 0.0",
+        "ROTATION": -45
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "0.5, 0.0",
+          "0.5, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "-0.1, 0.0",
+        "ROTATION": 0
+      }
+    ],
+    "JOINTS": [
+      {
+        "TYPE": "REVOLUTE",
+        "BODY_A": 0,
+        "BODY_B": 1,
+        "OFFSET_A": "0.0, 0.0",
+        "OFFSET_B": "-0.25, 0.0"
+      },
+      {
+        "TYPE": "REVOLUTE",
+        "BODY_A": 1,
+        "BODY_B": 2,
+        "OFFSET_A": "0.25, 0.0",
+        "OFFSET_B": "-0.25, 0.0"
+      },
+      {
+        "TYPE": "REVOLUTE",
+        "BODY_A": 2,
+        "BODY_B": 3,
+        "OFFSET_A": "0.25, 0.0",
+        "OFFSET_B": "-0.25, 0.0"
+      }
+    ]
+  }
