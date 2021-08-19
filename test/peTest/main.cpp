@@ -2,23 +2,64 @@
 # include <QApplication>
 # include <QSurfaceFormat>
 # include <QPushButton>
+# include <QLabel>
+# include <QWidget>
+# include <QMainWindow>
+# include <QVBoxLayout>
+# include <QHBoxLayout>
+# include <QComboBox>
+# include <QSlider>
 # include "apps/TestApp.hpp"
-# include "../../src/physics/WorldParser.hpp"
 
 int main(int argc, char **argv) {
-	WorldParser parser;
-	parser.Parse("/home/hebb/project/physics2d/test/test.json");
 	QApplication app(argc, argv);
+
+	// main GUI
+	QMainWindow* mainWindow = new QMainWindow();
+	mainWindow->setGeometry(0, 0, 800, 600);
+	QWidget* mainWidget = new QWidget();
+	mainWindow->setCentralWidget(mainWidget);
+	QVBoxLayout* mainLayout = new QVBoxLayout();
+	mainWidget->setLayout(mainLayout);
+
+	// menu bar
+	QWidget* menuBar = new QWidget();
+	QHBoxLayout* menuLayout = new QHBoxLayout();
+	menuBar->setLayout(menuLayout);
+	QComboBox* presetComboBox = new QComboBox();
+	QPushButton* playButton = new QPushButton();
+	QPushButton* stepButton = new QPushButton();
+	QPushButton* resetButton = new QPushButton();
+	QSlider* gravitySlider = new QSlider(Qt::Orientation::Horizontal);
+	QSlider* velIterSlider = new QSlider(Qt::Orientation::Horizontal);
+	QSlider* posIterSlider = new QSlider(Qt::Orientation::Horizontal);
+	velIterSlider->setSingleStep(1);
+	menuLayout->addWidget(presetComboBox);
+	menuLayout->addWidget(playButton);
+	menuLayout->addWidget(stepButton);
+	menuLayout->addWidget(resetButton);
+	menuLayout->addWidget(gravitySlider);
+	menuLayout->addWidget(velIterSlider);
+	menuLayout->addWidget(posIterSlider);
+	menuBar->setLayout(menuLayout);
+	
+
 	TestWindow* window = new TestWindow();
 	World* world = new World();
 	TestApp testApp(window, world);
+
+
+	QWidget* container = QWidget::createWindowContainer(window);
+	mainLayout->addWidget(menuBar);
+	mainLayout->addWidget(container);
+	mainLayout->setStretchFactor(menuBar, 1);
+	mainLayout->setStretchFactor(container, 10);
 	testApp.InitApp();
 
-	// Note: The format must be set before show() is called.
-	// RectangleWindow window;
-	// window.setFormat(format);
-	// window.resize(640, 480);
-	// window.show();
+
+	// 
+	
+	mainWindow->show();
 
 	return app.exec();
 }

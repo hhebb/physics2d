@@ -31,11 +31,11 @@ void TestApp::InitApp()
     // format.setDepthBufferSize(24);
     // format.setStencilBufferSize(8);
     // window->setFormat(format);
-    window->resize(640, 480);
+    // window->resize(640, 480);
 
     world->Init();
     window->SetVertices(world->GetVertices());
-    window->show();
+    // window->show();
 
 }
 // void TestApp::SetWorld(World* world)
