@@ -28,26 +28,22 @@ void TestApp::InitApp()
 	format.setProfile(QSurfaceFormat::CoreProfile);
 	format.setVersion(3,3);
     format.setSwapInterval(1);
-    // format.setDepthBufferSize(24);
-    // format.setStencilBufferSize(8);
-    // window->setFormat(format);
-    // window->resize(640, 480);
 
     world->Init();
     window->SetVertices(world->GetVertices());
-    // window->show();
+    connect(world, SIGNAL (physicsUpdate(QVariant)), window, SLOT (Render(QVariant)));
 
 }
-// void TestApp::SetWorld(World* world)
-// {
-//     this->world = world;
-// }
 
-// void TestApp::SetWindow(TestWindow* window)
-// {
-//     this->window = window;
-    
-// }
+void TestApp::SetWorld(World* world)
+{
+    this->world = world;
+}
+
+void TestApp::SetWindow(TestWindow* window)
+{
+    this->window = window;
+}
 
 TestWindow* TestApp::GetWindow()
 {
@@ -58,19 +54,14 @@ TestWindow* TestApp::GetWindow()
 void TestApp::Run()
 {
     // 루프를 돌면서 물리 연산과 디버깅 창 렌더링 동시에 진행.
-
-    // window create 함수 따로 만들기.
-    // QSurfaceFormat format;
-	// format.setRenderableType(QSurfaceFormat::OpenGL);
-	// format.setProfile(QSurfaceFormat::CoreProfile);
-	// format.setVersion(3, 3);
-    // window->setFormat(format);
-	// window->resize(640, 600);
-	// window->show();
-    
+    world->SetState(world->PLAY);
     window->draw = true;
-    connect(world, SIGNAL (physicsUpdate(QVariant)), window, SLOT (Render(QVariant)));
     world->start();
+}
+
+void TestApp::Pause()
+{
+    world->SetState(world->PAUSE);
 }
 
 void TestApp::setReady()
@@ -83,7 +74,7 @@ bool TestApp::eventFilter(QObject *obj, QEvent *event)
     if (event->type() == QEvent::KeyPress) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
         // qDebug() << "Ate key press" << keyEvent->key();
-        this->Run();
+        // this->Run();
 
         return true;
     } else {

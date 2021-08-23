@@ -23,6 +23,7 @@ class World: public QThread
 signals:
     void physicsUpdate(QVariant);
 private:
+    
     // custom parse
     string testName;
     vector<POLY_DATA> polys;
@@ -43,6 +44,8 @@ private:
     int jointPosIter;
 
 public:
+    enum State {PLAY, PAUSE};
+    State state;
     bool ready;
     World();
     void Parse(string path);
@@ -57,6 +60,8 @@ public:
     void Debug();
     vector<Body> GetBodies();
     bool IsCollide(Body*, Body*);
+
+    void SetState(State);
     
     
 };

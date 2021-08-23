@@ -6,8 +6,6 @@ using namespace std;
 World::World()
 {
     // vertices;
-    // Init();
-    // Reset();
     colVelIter = 4;
     colPosIter = 8;
     jointVelIter = 8;
@@ -279,13 +277,13 @@ void World::run()
     // 이 메서드에서 스레드 work 를 실행한다.
     // 모든 물리 연산은 여기서 수행되고 결과를 emit 한다.
     // GL window 가 vsync 가 될 때까지 대기를 하므로, 렌더링을 켜면 연산이 느려진다.
-    int count = 0;
-    while(count < 1)
+    // int count = 0;
+    while(state == PLAY)
     {
         // main physics.
         while(!ready) {}
         ready = false;
-        count ++;
+        // count ++;
         Step();
 
         // emit for rendering.
@@ -353,4 +351,9 @@ bool World::IsCollide(Body* body1, Body* body2)
     }
 
     return false;
+}
+
+void World::SetState(State s)
+{
+    state = s;
 }

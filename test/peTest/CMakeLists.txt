@@ -21,6 +21,7 @@ find_package(jsoncpp REQUIRED)
 # set sources for target.
 set(PHYSICS_SOURCES
         main.cpp
+        MainWindow.cpp
         window/TestWindow.cpp
         apps/TestApp.cpp
         ../../src/physics/World.cpp
