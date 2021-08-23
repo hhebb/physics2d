@@ -3,7 +3,6 @@
 MainWindow::MainWindow()
 {
     // main GUI
-	// QMainWindow* mainWindow = new QMainWindow();
 	this->setGeometry(0, 0, 800, 600);
 	QWidget* mainWidget = new QWidget();
 	this->setCentralWidget(mainWidget);
@@ -30,15 +29,6 @@ MainWindow::MainWindow()
 	menuLayout->addWidget(velIterSlider);
 	menuLayout->addWidget(posIterSlider);
 	menuBar->setLayout(menuLayout);
-	
-
-	// TestWindow* window = new TestWindow();
-	// World* world = new World();
-	// TestApp* testApp = new TestApp(window, world);
-
-
-	
-	// testApp->InitApp();
 
 }
 
