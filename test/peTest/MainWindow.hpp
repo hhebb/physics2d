@@ -12,15 +12,22 @@
 # include <QComboBox>
 # include <QSlider>
 # include "apps/TestApp.hpp"
+# include <sys/stat.h>
+# include <dirent.h>
+# include <stdio.h>
+# include <QString>
+
+using namespace std;
 
 class MainWindow: public QMainWindow
 {
     Q_OBJECT
 
 private:
+    QComboBox* presetComboBox;
     QPushButton* playButton;
+    QPushButton* pauseButton;
     QPushButton* stepButton;
-    QPushButton* stopButton;
     QPushButton* resetButton;
     QWidget* container;
     QVBoxLayout* mainLayout;
@@ -32,6 +39,7 @@ public:
     MainWindow();
     void SetApp(TestApp* app);
     void SetWindow(TestWindow* window);
+    void SetComboBox();
 };
 
 # endif

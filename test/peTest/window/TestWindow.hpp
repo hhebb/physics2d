@@ -32,6 +32,7 @@ public:
     void Init();
     void SetVertices(POLY_LIST);
     void Resize();
+    void ClearWindow();
     void fff();
 };
 

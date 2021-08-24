@@ -103,10 +103,15 @@ vector<string> World::Split(string str, char delim)
     return result;
 }
 
-void World::Init()
+void World::Init(string name)
 {
+    // 기존 오브젝트 삭제.
+    bodies.clear();
+    jointList.clear();
+    
     // parsing 방식으로 create.
-    Parse("/home/hebb/project/physics2d/test/peTest/presets/fall_1.json");
+    string path = "/home/hebb/project/physics2d/test/peTest/presets/";
+    Parse(path + name + ".json");
 
 }
 
@@ -277,8 +282,8 @@ void World::run()
     // 이 메서드에서 스레드 work 를 실행한다.
     // 모든 물리 연산은 여기서 수행되고 결과를 emit 한다.
     // GL window 가 vsync 가 될 때까지 대기를 하므로, 렌더링을 켜면 연산이 느려진다.
-    // int count = 0;
-    while(state == PLAY)
+
+    while(state == PLAY || state == SINGLE_STEP)
     {
         // main physics.
         while(!ready) {}
@@ -295,9 +300,14 @@ void World::run()
             // var.setValue(bodies[i].GetCollider()->GetVertices());
             vertices.push_back(bodies[i].GetCollider()->GetVertices());
         }
+
         var.setValue(vertices);
         emit physicsUpdate(var);
+        
+        if (state == SINGLE_STEP)
+            break;
     }
+    
 }
 
 bool World::IsCollide(Body* body1, Body* body2)

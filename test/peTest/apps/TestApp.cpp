@@ -29,7 +29,7 @@ void TestApp::InitApp()
 	format.setVersion(3,3);
     format.setSwapInterval(1);
 
-    world->Init();
+    // world->Init("");
     window->SetVertices(world->GetVertices());
     connect(world, SIGNAL (physicsUpdate(QVariant)), window, SLOT (Render(QVariant)));
 
@@ -59,6 +59,14 @@ void TestApp::Run()
     world->start();
 }
 
+void TestApp::SingleStep()
+{
+    world->SetState(world->SINGLE_STEP);
+    window->draw = true;
+    world->start();
+
+}
+
 void TestApp::Pause()
 {
     world->SetState(world->PAUSE);
@@ -68,6 +76,19 @@ void TestApp::setReady()
 {
     world->ready = true;
 }
+
+void TestApp::SetPreset(QString name)
+{
+    // comboBox 에서 preset 선택할 때마다 world Init 해줌.
+    cout << "set preset" << name.toStdString() << endl;
+    world->Init(name.toStdString());
+    world->SetState(world->SINGLE_STEP);
+    window->ClearWindow();
+}
+// void TestApp::Reset()
+// {
+
+// }
 
 bool TestApp::eventFilter(QObject *obj, QEvent *event)
 {

@@ -67,6 +67,11 @@ void TestWindow::Resize()
 
 }
 
+void TestWindow::ClearWindow()
+{
+    // 환경 바뀌었을 때 윈도우만 지워줌.
+    glClear(GL_COLOR_BUFFER_BIT);
+}
 
 void TestWindow::Render(QVariant vertices)
 {    

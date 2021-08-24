@@ -14,8 +14,10 @@ signals:
     void requestUpdate(Vector2); // vertices 를 넘겨줘야함.
 public slots:
     void Run();
+    void SingleStep();
     void Pause();
     void setReady();
+    void SetPreset(QString name);
 
 private:
     World* world;

@@ -44,13 +44,13 @@ private:
     int jointPosIter;
 
 public:
-    enum State {PLAY, PAUSE};
+    enum State {PLAY, PAUSE, SINGLE_STEP};
     State state;
     bool ready;
     World();
     void Parse(string path);
     vector<string> Split(string str, char delim);
-    void Init();
+    void Init(string name);
     void Reset();
     void Step();
     void SetCommand(Command com);
