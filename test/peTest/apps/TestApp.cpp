@@ -72,6 +72,11 @@ void TestApp::Pause()
     world->SetState(world->PAUSE);
 }
 
+void TestApp::Reset()
+{
+    SetPreset(presetName);
+}
+
 void TestApp::setReady()
 {
     world->ready = true;
@@ -80,15 +85,33 @@ void TestApp::setReady()
 void TestApp::SetPreset(QString name)
 {
     // comboBox 에서 preset 선택할 때마다 world Init 해줌.
+    presetName = name;
     cout << "set preset" << name.toStdString() << endl;
     world->Init(name.toStdString());
     world->SetState(world->SINGLE_STEP);
     window->ClearWindow();
 }
-// void TestApp::Reset()
-// {
 
-// }
+void TestApp::SetCollisionVelIter(int value)
+{
+    world->SetVelCollisionIter(value);
+}
+
+void TestApp::SetCollisionPosIter(int value)
+{
+    world->SetPosCollisionIter(value);
+}
+
+void TestApp::SetJointVelIter(int value)
+{
+    world->SetVelJointIter(value);
+}
+
+void TestApp::SetJointPosIter(int value)
+{
+    world->SetPosJointIter(value);
+}
+
 
 bool TestApp::eventFilter(QObject *obj, QEvent *event)
 {

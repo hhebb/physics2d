@@ -367,3 +367,23 @@ void World::SetState(State s)
 {
     state = s;
 }
+
+void World::SetVelCollisionIter(int value)
+{
+    colVelIter = value;
+}
+
+void World::SetPosCollisionIter(int value)
+{
+    colPosIter = value;
+}
+
+void World::SetVelJointIter(int value)
+{
+    jointVelIter = value;
+}
+
+void World::SetPosJointIter(int value)
+{
+    jointPosIter = value;
+}

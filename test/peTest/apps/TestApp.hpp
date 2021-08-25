@@ -16,10 +16,16 @@ public slots:
     void Run();
     void SingleStep();
     void Pause();
+    void Reset();
     void setReady();
     void SetPreset(QString name);
+    void SetCollisionVelIter(int value);
+    void SetCollisionPosIter(int value);
+    void SetJointVelIter(int value);
+    void SetJointPosIter(int value);
 
 private:
+    QString presetName;
     World* world;
     TestWindow* window;
     int count;

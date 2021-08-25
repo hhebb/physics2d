@@ -1,8 +1,8 @@
 [TODO]
-* play/pause button 전환 구현.
-* reset 기능 구현.
-* preset file dropdown 구현.
-* gravity, iteration slider 기능 구현.
+x* play/pause button 전환 구현.
+x* reset 기능 구현.
+x* preset file dropdown 구현.
+x* gravity, iteration slider 기능 구현.
 * UI 좀 깔끔하게 정리. (레이아웃, 배치, 사이즈)
 * 최종 코드 정리. 프로젝트 파일 정리
 * 도커 올리기.

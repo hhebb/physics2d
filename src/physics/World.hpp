@@ -60,8 +60,13 @@ public:
     void Debug();
     vector<Body> GetBodies();
     bool IsCollide(Body*, Body*);
-
+    
+    // command 처리.
     void SetState(State);
+    void SetVelCollisionIter(int value);
+    void SetPosCollisionIter(int value);
+    void SetVelJointIter(int value);
+    void SetPosJointIter(int value);
     
     
 };
