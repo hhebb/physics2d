@@ -1,0 +1,53 @@
+{
+    "TEST_NAME": "chain",
+    "BODIES": [
+      {
+        "TYPE": 2,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "2.0, 0.0",
+          "2.0, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.0, -0.9",
+        "ROTATION": 0
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 1,
+        "VERTICES": [
+          "0, 0",
+          "0.3, 0.0",
+          "0.2, 0.1"
+        ],
+        "POSITION": "-0.1, 0.0",
+        "ROTATION": 45
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 2,
+        "VERTICES": [
+          "0, 0",
+          "0.3, 0.0",
+          "0.3, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.5, 0.0",
+        "ROTATION": -45
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 3,
+        "VERTICES": [
+          "0, 0",
+          "0.2, 0.0",
+          "0.3, 0.1",
+          "0.0, 0.2"
+        ],
+        "POSITION": "0.2, 0.3",
+        "ROTATION": 0
+      }
+    ],
+    "JOINTS": []
+  }

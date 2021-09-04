@@ -66,7 +66,7 @@ public:
     ClippedPoints Clip(Vector2, Vector2, Vector2, double);
     void InitSolver();
     void VelocitySolve();
-    void VelocitySolve2();
+    // void VelocitySolve2();
     void PositionSolve();
     void Push();
 };

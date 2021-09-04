@@ -14,7 +14,7 @@ Collider::Collider(POLY_DATA vert, Vector2 pos, SCALAR rot, double rad)
     CalculateCentroid();
     InitVertices(pos, rot); // body 의 position 기준으로 centroid 를 옮김.
     CalculateCentroid();
-    PrintVector("init centroid", centroid);
+    // PrintVector("init centroid", centroid);
 
 }
 

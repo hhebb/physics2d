@@ -63,7 +63,7 @@ void DistanceJoint::VelocitySolve()
     bodyB->AddVelocity(P * m_b);
     bodyB->AddAngularVelocity(mr_b.Cross(P) * i_b);
 
-    PrintVector("p impulse", P);
+    // PrintVector("p impulse", P);
 }
 
 void DistanceJoint::PositionSolve()
@@ -85,9 +85,9 @@ void DistanceJoint::PositionSolve()
     bodyA->AddRotation(- r_a.Cross(P) * i_a);
     bodyB->AddPosition(P * m_b);
     bodyB->AddRotation(r_b.Cross(P) * i_b);
-    PrintVector("dist impulse", P);
-    PrintVector("angle", r_b);
-    PrintScalar("m", m_b);
+    // PrintVector("dist impulse", P);
+    // PrintVector("angle", r_b);
+    // PrintScalar("m", m_b);
 }
 
 

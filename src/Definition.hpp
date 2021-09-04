@@ -171,7 +171,7 @@ struct Matrix2x2
         double det = m11 * m22 - m12 * m21;
         if (det == 0)
         {
-            cout << "det = 0!" << endl;
+            // cout << "det = 0!" << endl;
             return Vector2{0, 0};
         }
 
@@ -199,7 +199,7 @@ struct Matrix3x3
         double det = m11 * (m22 * m33 - m23 * m32) - m12 * (m21 * m33 - m23 * m31) + m13 * (m21 * m32 - m22 * m31);
         if (det == 0)
         {
-            cout << "det = 0!" << endl;
+            // cout << "det = 0!" << endl;
             return Vector3{0, 0, 0};
         }
 

@@ -14,7 +14,6 @@ World::World()
 
 void World::Parse(string path)
 {
-    // "/home/hebb/project/rlstudio/test/test.json"
     // get json file
     ifstream ifs(path);
 	Json::Value root;   // will contains the root value after parsing.
@@ -159,7 +158,7 @@ void World::Step()
 
             if (IsCollide(&bodies[i], &bodies[j]))
             {
-                cout << "> collide!" << endl;
+                // cout << "> collide!" << endl;
             }
         }
     }
@@ -174,7 +173,7 @@ void World::Step()
     for (int i = 0; i < collisionList.size(); i ++)
     {
         collisionList[i]->InitSolver();
-        cout << "> collision init check" << i << endl;
+        // cout << "> collision init check" << i << endl;
     }
 
     // joint constraint iterative solve.

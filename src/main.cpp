@@ -9,7 +9,7 @@
 # include <QHBoxLayout>
 # include <QComboBox>
 # include <QSlider>
-# include "apps/TestApp.hpp"
+# include "apps/App.hpp"
 # include "MainWindow.hpp"
 
 int main(int argc, char **argv) {

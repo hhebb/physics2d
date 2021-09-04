@@ -12,12 +12,8 @@ Body::Body(POLY_DATA vertices, Vector2 pos, SCALAR rot, int i, SCALAR density, B
     prev_position = position;
     prev_rotation = rotation;
     collider = new Collider(vertices, position, rotation, radius);
-    // SetPosition(pos);
-    // SetRotation(rot);
     type = t;
     // PrintScalar("type", t);
-    // radius = rad; // ??? deprecated.
-    
     
     // get mass data from created collider.
     mass = type == DYNAMIC ? collider->CalculateMass(density) : 0;
