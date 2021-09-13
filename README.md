@@ -30,6 +30,8 @@
 
 ### ScreenShots
 
+---
+
 * Chain (revolute joint)
 ![](/images/chain.gif)
 
