@@ -29,10 +29,16 @@
 
 
 ### ScreenShots
-
+* Chain (revolute joint)
 ![](/images/chain.gif)
+
+* Free fall
 ![](/images/fall.gif)
+
+* Pendulum (revolute joint)
 ![](/images/pendulum.gif)
+
+* Iteration change result
 ![](/images/iteration.gif)
 
 ### Function
