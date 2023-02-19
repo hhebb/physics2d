@@ -14,16 +14,16 @@
 ### Environment
 
 - Ubuntu 20.04 LTS (WSL2)
-- g++ 버전
-- Qt5 버전
-- OpenGL 버전
+- g++
+- Qt5
+- OpenGL
 
 ### build
 
-- cd pe2d/src
+- cd ./src
 - cmake CMakeLists.txt -B build
 - cd build
-- make peTest
+- make physics
 
 ## Content
 

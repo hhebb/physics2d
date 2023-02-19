@@ -123,7 +123,7 @@ void MainWindow::SetWindow(TestWindow* window)
 void MainWindow::SetComboBox()
 {
 	// search preset json files.
-	const char* path = "/home/hebb/project/pe2d/physics2d/test/peTest/presets";
+	const char* path = "/home/hebb/project/physics2d/test/peTest/presets";
 	vector<string> presetLists;
 	DIR *dir = opendir(path);
     if(dir == NULL)
