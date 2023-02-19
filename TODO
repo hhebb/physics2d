@@ -1,5 +1,2 @@
 [TODO]
-* UI 좀 깔끔하게 정리. (레이아웃, 배치, 사이즈)
-* 최종 코드 정리. 프로젝트 파일 정리
-* 도커 올리기.
-* md 파일 만들기.
+* revision, refactoring, delete useless files

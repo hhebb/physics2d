@@ -1,0 +1,1 @@
+sudo apt install build-essential qt5-default freeglut3-dev cmake g++ libjsoncpp-dev -y
