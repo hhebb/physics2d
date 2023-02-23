@@ -109,7 +109,7 @@ void World::Init(string name)
     jointList.clear();
     
     // parsing 방식으로 create.
-    string path = "/home/hebb/project/physics2d/test/peTest/presets/";
+    string path = "/home/hebb/project/physics2d/src/presets/";
     Parse(path + name + ".json");
 
 }
@@ -158,7 +158,6 @@ void World::Step()
 
             if (IsCollide(&bodies[i], &bodies[j]))
             {
-                // cout << "> collide!" << endl;
             }
         }
     }
@@ -173,7 +172,6 @@ void World::Step()
     for (int i = 0; i < collisionList.size(); i ++)
     {
         collisionList[i]->InitSolver();
-        // cout << "> collision init check" << i << endl;
     }
 
     // joint constraint iterative solve.
@@ -191,7 +189,6 @@ void World::Step()
         for (int i = 0; i < collisionList.size(); i ++)
         {
             collisionList[i]->VelocitySolve();
-            // cout << "> collision velocity solve check" << i << endl;
         }
     }
 
@@ -219,7 +216,6 @@ void World::Step()
         for (int i = 0; i < collisionList.size(); i ++)
         {
             collisionList[i]->PositionSolve();
-            // cout << "> collision position solve check" << i << endl;
         }
     }
 
@@ -258,16 +254,13 @@ void World::Create(POLY_DATA ver, Vector2 pos, SCALAR rot, int id, BodyType t)
 {
     Body body(ver, pos, rot, id, 1, t);
     this->bodies.push_back(body);
-    // this->vertices.push_back(ver.data());
 }
 
 void World::Debug()
 {
     for (int i = 0; i < bodies.size(); i ++)
     {
-        // cout << "Body " << i + 1 << " : ";
         Vector2 vel = bodies[i].GetPosition();
-        // cout << vel.x << ", " << vel.y << endl;
     }
 }
 
@@ -296,7 +289,6 @@ void World::run()
 
         for (int i = 0; i < bodies.size(); i ++)
         {
-            // var.setValue(bodies[i].GetCollider()->GetVertices());
             vertices.push_back(bodies[i].GetCollider()->GetVertices());
         }
 
@@ -324,24 +316,16 @@ bool World::IsCollide(Body* body1, Body* body2)
 
     while(vertexSum > count)
     {
-        // cout << "> colliding check" << endl;
         Vector2 b = SupportFunction(body1->GetCollider()->GetVertices(), body2->GetCollider()->GetVertices(), direction);
         simplex.add(b);
-        
-        // cout << "count: " << count << endl;
         
         if (simplex.GetLastElement().Dot(direction) < 0)
         {
             // origin 을 지나지 않는다는 것이 확실할 때 종료
-            // cout << "not collide" << endl;
-            // PrintVector("last: ", simplex.GetLastElement());
-            // PrintVector("dir: ", direction);
             return false;
         }
         else
         {
-            // PrintVector("contain, last: ", simplex.GetLastElement());
-            // PrintVector("contain, dir: ", direction);
             // origin 지날 때, 아직은 지나지 않을 때
             if (IsContainOrigin(simplex, direction))
             {
@@ -352,8 +336,6 @@ bool World::IsCollide(Body* body1, Body* body2)
                 collision->FindManifolds();
                 return true;
             }
-            // PrintVector("changed dir", direction);
-
         }
 
         count ++;

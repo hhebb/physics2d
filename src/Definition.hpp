@@ -180,6 +180,29 @@ struct Matrix2x2
 
         return x;
     }
+
+    Matrix2x2 GetInverse()
+	{
+		Matrix2x2 Inverse;
+        double coef = 1/(m11*m22 - m12*m12);
+        Inverse.m11 = coef * m22;
+        Inverse.m12 = coef * -m12;
+        Inverse.m21 = coef * -m21;
+        Inverse.m22 = coef * m11;
+		
+        return Inverse;
+	}
+
+    Matrix2x2 Multiply(Matrix2x2 vec)
+    {
+        Matrix2x2 mat;
+        mat.m11 = m11*vec.m11 + m12*vec.m21;
+        mat.m12 = m11*vec.m12 + m12*vec.m22;
+        mat.m21 = m21*vec.m11 + m22*vec.m21;
+        mat.m22 = m21*vec.m12 + m22*vec.m22;
+
+        return mat;
+    }
 };
 
 struct Matrix3x3
@@ -343,9 +366,35 @@ struct Simplex
 
 };
 
+struct ContactPoint
+{
+    Vector2 pos;
+
+    Vector2 r_a;
+    Vector2 r_b;
+    SCALAR rn_a;
+    SCALAR rn_b;
+    double rt_a;
+    double rt_b;
+
+    SCALAR n_impulse;
+    SCALAR t_impulse;
+
+    SCALAR k_tangent;
+    SCALAR m_tangent;
+    double k_normal;
+    SCALAR m_normal;
+
+    // for restitution
+    SCALAR v_rel;
+    double e;
+    double bias;
+
+};
+
 struct ClippedPoints
 {
-    VERTEX_LIST cPoints;
+    vector<ContactPoint> cPoints;
 };
 
 struct Command

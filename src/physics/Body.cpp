@@ -138,13 +138,8 @@ void Body::AddImpulseAt(Vector2 impulse, Vector2 pos)
     // for collision solve.
     SCALAR rotation_impulse = (pos - position).Cross(impulse);
 
-    // PrintVector("after", velocity);
-    // PrintVector("impulse", impulse);
     velocity += impulse * inverseMass;
-    // PrintVector("after", velocity);
     angularVelocity += rotation_impulse * inverseInertia;
-    // PrintScalar("rot impulse", rotation_impulse);
-    // PrintScalar("angular", angularVelocity);
 }
 
 void Body::AddJointImpulse(Vector2 v, SCALAR a)
@@ -181,8 +176,6 @@ void Body::CalculateVelocity()
 void Body::CalculateAngularVelocity()
 {
     angularVelocity += torque * inverseInertia * DELTA_TIME;
-    // PrintScalar("angular", angularVelocity);
-    // PrintScalar("inertia", inertia);
 }
 
 void Body::CalculatePosition()

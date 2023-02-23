@@ -1,5 +1,5 @@
 {
-    "TEST_NAME": "chain",
+    "TEST_NAME": "fall",
     "BODIES": [
       {
         "TYPE": 2,
@@ -11,7 +11,7 @@
           "0.0, 0.1"
         ],
         "POSITION": "0.0, -0.9",
-        "ROTATION": 0.0
+        "ROTATION": -0.1
       },
       {
         "TYPE": 0,
@@ -19,10 +19,22 @@
         "VERTICES": [
           "0, 0",
           "0.3, 0.0",
-          "0.15, 0.1"
+          "0.2, 0.1"
         ],
-        "POSITION": "-0.1, 0.0",
-        "ROTATION": 3.141594
+        "POSITION": "0.1, 0.5",
+        "ROTATION": 0
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 2,
+        "VERTICES": [
+          "0, 0",
+          "0.3, 0.0",
+          "0.3, 0.3",
+          "0.0, 0.3"
+        ],
+        "POSITION": "0.25, 0.0",
+        "ROTATION": -45
       }
     ],
     "JOINTS": []

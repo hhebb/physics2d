@@ -20,3 +20,12 @@ TODO.txt
 ### CMake Patch ###
 # External projects
 *-prefix/
+
+
+### directory ###
+build/*
+src/build/*
+
+
+### files ###
+TODO

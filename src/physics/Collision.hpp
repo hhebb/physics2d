@@ -28,27 +28,8 @@ private:
     SCALAR w_a;
     SCALAR w_b;
 
-    Vector2 r_a;
-    Vector2 r_b;
-    SCALAR rn_a;
-    SCALAR rn_b;
-
-    SCALAR n_impulse;
-    SCALAR t_impulse;
-
-    double k_normal;
-    SCALAR m_normal;
     Vector2 tangent;
-    double rt_a;
-    double rt_b;
-    
-    SCALAR k_tangent;
-    SCALAR m_tangent;
-
-    // for restitution
-    SCALAR v_rel;
     double e;
-    double bias;
 
     // for friction
     double friction;
@@ -66,7 +47,6 @@ public:
     ClippedPoints Clip(Vector2, Vector2, Vector2, double);
     void InitSolver();
     void VelocitySolve();
-    // void VelocitySolve2();
     void PositionSolve();
     void Push();
 };

@@ -1,2 +1,7 @@
 [TODO]
-* revision, refactoring, delete useless files
+* code revision, refactoring, delete useless files
+* solve friction, jittering
+* RL interface
+* separate physics, rendering
+* connect to RL python library
+* 3D version
