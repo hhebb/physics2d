@@ -3,49 +3,50 @@
 > Personal Project
 
 ## About
-
-
 - Simple and basic Physics Engine 2D Simulator.
 - Simulator for Reinforce Learning or other Physical Environment Analysis.
-
-## Build
 
 
 ### Environment
 
-- Ubuntu 20.04 LTS (WSL2)
+- Ubuntu 20.04 LTS
 - g++
 - Qt5
 - OpenGL
 
-### build
+### dependencies
+```
+sh dependencies.sh
+```
 
-- cd ./src
-- cmake CMakeLists.txt -B build
-- cd build
-- make physics
+### Build
 
-## Content
+```
+cd ./src
+cmake CMakeLists.txt -B build
+cd build
+make physics
 
+```
 
-### ScreenShots
+## ScreenShots
 
-
-* Chain (revolute joint)
+> Chain (revolute joint)
 
 ![](/images/chain.gif)
 
-* Free fall
+> Free fall
 
 ![](/images/fall.gif)
 
-* Pendulum (revolute joint)
+> Pendulum (revolute joint)
 
 ![](/images/pendulum.gif)
 
-* Iteration change result
+> Iteration change result
 
 ![](/images/iteration.gif)
+
 
 ### Function
 

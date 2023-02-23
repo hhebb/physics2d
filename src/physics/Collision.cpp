@@ -6,9 +6,11 @@ Collision::Collision(Body* b1, Body* b2)
     this->b1 = b1;
     this->b2 = b2;
 
-    bgt = .2;
-    slop = .0;
-    max_correction = .5;
+    e = 0.1;
+    bgt = .3;
+    slop = .01;
+    friction = 0.01;
+    max_correction = .2;
     separation = 0;
 }
 
@@ -176,14 +178,10 @@ void Collision::InitSolver()
 
         // for restitution
         pt->v_rel = collisionNormal.Dot(v_b + pt->r_b.Cross(w_b) - (v_a + pt->r_a.Cross(w_a)));
-        e = .0;
         pt->bias = 0;
 
-        if (pt->v_rel < -1.5)
+        if (pt->v_rel < -2.5)
             pt->bias = -e * pt->v_rel;
-
-        // for friction
-        friction = .0;
 
         // for position solve
         separation = -penetrationDepth;
