@@ -6,11 +6,11 @@ Collision::Collision(Body* b1, Body* b2)
     this->b1 = b1;
     this->b2 = b2;
 
-    e = 0.1;
-    bgt = .3;
+    e = 0.5; // adequate bounce
+    bgt = .5; // adequate bounce
     slop = .01;
-    friction = 0.01;
-    max_correction = .2;
+    friction = 0.5; // adequate friction
+    max_correction = .01;
     separation = 0;
 }
 
@@ -193,7 +193,6 @@ void Collision::VelocitySolve()
 {
     // collision solve using constraint based method.
 
-    // solve tangent constraint for friction.
     v_a = b1->GetVelocity();
     v_b = b2->GetVelocity();
     w_a = b1->GetAngularVelocity();
@@ -202,6 +201,7 @@ void Collision::VelocitySolve()
     for (vector<ContactPoint>::iterator pt=manifolds.cPoints.begin(); pt != manifolds.cPoints.end(); pt++)
     {
 
+        // solve tangent constraint for friction. add impulse
         Vector2 dv = v_b + pt->r_b.Cross(w_b) - (v_a + pt->r_a.Cross(w_a));
         SCALAR v_t = dv.Dot(tangent);
         SCALAR lambda = pt->m_tangent * -v_t;
@@ -211,12 +211,10 @@ void Collision::VelocitySolve()
         pt->t_impulse = new_impulse;
 
         Vector2 P = tangent * lambda;
-        b1->AddVelocity(-P * m_a);
-        b1->AddAngularVelocity(-pt->r_a.Cross(P) * i_a);
-        b2->AddVelocity(P * m_b);
-        b2->AddAngularVelocity(pt->r_b.Cross(P) * i_b);
+        b1->AddImpulseAt(-P, pt->pos);
+        b2->AddImpulseAt(P, pt->pos);
 
-        // solve normal constraint for restitution, no penetration.
+        // solve normal constraint for restitution, no penetration. add impulse
         SCALAR v_n = collisionNormal.Dot(v_b + pt->r_b.Cross(w_b) - (v_a + pt->r_a.Cross(w_a)));
         lambda = -pt->m_normal * (v_n - pt->bias);
         new_impulse = fmax(pt->n_impulse + lambda, 0);
@@ -224,10 +222,8 @@ void Collision::VelocitySolve()
         pt->n_impulse = new_impulse;
         
         P = collisionNormal * lambda;
-        b1->AddVelocity(-P * m_a);
-        b1->AddAngularVelocity(-pt->r_a.Cross(P) * i_a);
-        b2->AddVelocity(P * m_b);
-        b2->AddAngularVelocity(pt->r_b.Cross(P) * i_b);
+        b1->AddImpulseAt(-P, pt->pos);
+        b2->AddImpulseAt(P, pt->pos);
     }
 }
 
@@ -263,7 +259,6 @@ void Collision::PositionSolve()
         b1->AddRotation(-r_a.Cross(P) * i_a);
         b2->AddPosition(P * m_b);
         b2->AddRotation(r_b.Cross(P) * i_b);
-        // b2->AddImpulseAt(P, manifolds.cPoints[0]);
     }
 }
 

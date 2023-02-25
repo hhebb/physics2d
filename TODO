@@ -1,7 +1,20 @@
 [TODO]
-* code revision, refactoring, delete useless files
-* solve friction, jittering
+* create demo big world
+* control, action
+    * add impuse interface
+* visualization diversity
+    * only edges
+    * view contact points
+    * colors
+    * rays
+* update user interface
+    * start/pause integration
 * RL interface
+    * method for return (s, a, r, ...)
 * separate physics, rendering
+    * only physics mode
 * connect to RL python library
+    * pybind
+    * openAI gymnasium
+    * rllib
 * 3D version

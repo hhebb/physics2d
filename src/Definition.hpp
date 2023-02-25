@@ -10,7 +10,7 @@
 using namespace std;
 
 # define SCALAR double
-# define DELTA_TIME 0.016
+# define DELTA_TIME 0.0167 / 6
 # define GRAVITY 9.81
 # define POLY_DATA vector<Vector2>
 # define VERTEX_LIST vector<Vector2>
