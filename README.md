@@ -37,15 +37,17 @@ make physics
 
 > Free fall
 
-![](/images/fall.gif)
+![](/images/fall_2.gif)
+![](/images/fall_3.gif)
 
-> Pendulum (revolute joint)
+> Cart Pole
 
-![](/images/pendulum.gif)
+![](/images/cartpole.gif)
 
-> Iteration change result
+> snake
 
-![](/images/iteration.gif)
+![](/images/snake.gif)
+
 
 
 ### Function

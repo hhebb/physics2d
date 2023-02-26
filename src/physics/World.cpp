@@ -181,7 +181,7 @@ void World::Step()
         double rx = (dist(gen)-.5) / 50.0;
         double ry = (dist(gen)-.5) / 50.0;
         // bodies[i].AddRotationalImpulseAt(SCALAR(0.01), Vector2(-.0, 0.0));
-        bodies[i].AddImpulseAt(Vector2(rx, ry), bodies[i].GetPosition() - Vector2(-0, 0.0));
+        // bodies[i].AddImpulseAt(Vector2(rx, ry), bodies[i].GetPosition() - Vector2(-0, 0.0));
         
         
     }
