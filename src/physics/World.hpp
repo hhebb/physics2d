@@ -15,6 +15,7 @@
 # include "Joint.hpp"
 # include "RevoluteJoint.hpp"
 # include "DistanceJoint.hpp"
+# include "PrismaticJoint.hpp"
 
 class World: public QThread
 {
@@ -50,6 +51,7 @@ public:
     World();
     void Parse(string path);
     vector<string> Split(string str, char delim);
+    State GetState();
     void Init(string name);
     void Reset();
     void Step();

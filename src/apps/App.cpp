@@ -50,10 +50,20 @@ TestWindow* TestApp::GetWindow()
 void TestApp::Run()
 {
     // 루프를 돌면서 물리 연산과 디버깅 창 렌더링 동시에 진행.
-    world->SetState(world->PLAY);
-    window->draw = true;
-    world->start();
+
+    // toggle play <-> pause
+    if (world->GetState() == world->PLAY)
+    {
+        world->SetState(world->PAUSE);
+    }
+    else if (world->GetState() == world->SINGLE_STEP or world->GetState() == world->PAUSE)
+    {
+        world->SetState(world->PLAY);
+        window->draw = true;
+        world->start();
+    }
 }
+    
 
 void TestApp::SingleStep()
 {
@@ -61,11 +71,6 @@ void TestApp::SingleStep()
     window->draw = true;
     world->start();
 
-}
-
-void TestApp::Pause()
-{
-    world->SetState(world->PAUSE);
 }
 
 void TestApp::Reset()

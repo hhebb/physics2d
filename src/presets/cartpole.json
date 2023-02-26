@@ -1,0 +1,57 @@
+{
+    "TEST_NAME": "basic revolute",
+    "BODIES": [
+      {
+        "TYPE": 0,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "0.5, 0.0",
+          "0.5, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.0, -0.5",
+        "ROTATION": 0
+      },
+      {
+        "TYPE": 2,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "2.0, 0.0",
+          "2.0, 0.01",
+          "0.0, 0.01"
+        ],
+        "POSITION": "0.0, -0.5",
+        "ROTATION": 0
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "0.5, 0.0",
+          "0.5, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.0, -0.3",
+        "ROTATION": 60
+      }
+    ],
+    "JOINTS": [
+      {
+        "TYPE": "PRISMATIC",
+        "BODY_A": 0,
+        "BODY_B": 1,
+        "OFFSET_A": "0.0, 1.0",
+        "OFFSET_B": "0.0, 0.0"
+      },
+      {
+        "TYPE": "REVOLUTE",
+        "BODY_A": 0,
+        "BODY_B": 2,
+        "OFFSET_A": "0.0, 0.0",
+        "OFFSET_B": "0.3, 0.0"
+      }
+    ]
+  }

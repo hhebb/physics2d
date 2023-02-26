@@ -2,13 +2,16 @@
 * create demo big world
 * control, action
     * add impuse interface
+    * add force, torque
+    * method for control - each env preset
+    * keyboard input?
+* implement other joints
+    * spring
 * visualization diversity
     * only edges
     * view contact points
     * colors
     * rays
-* update user interface
-    * start/pause integration
 * RL interface
     * method for return (s, a, r, ...)
 * separate physics, rendering

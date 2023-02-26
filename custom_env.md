@@ -1,0 +1,47 @@
+{
+    "TEST_NAME": "basic revolute",
+    "BODIES": [
+      {
+        "TYPE": 2,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "1.0, 0.0",
+          "1.0, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.0, 0.5",
+        "ROTATION": 0
+      },
+      {
+        "TYPE": 0,
+        "LAYER": 0,
+        "VERTICES": [
+          "0, 0",
+          "0.5, 0.0",
+          "0.5, 0.1",
+          "0.0, 0.1"
+        ],
+        "POSITION": "0.0, 0.0",
+        "ROTATION": 60
+      }
+    ],
+    "JOINTS": [
+      {
+        "TYPE": "REVOLUTE",
+        "BODY_A": 0,
+        "BODY_B": 1,
+        "OFFSET_A": "0.0, 0.0",
+        "OFFSET_B": "0.5, 0.0"
+      }
+    ],
+    "controls": [
+        {
+            "TYPE: "", 
+            "BODY": "",
+            "JOINT": "",
+            "POSITION": "",
+
+        }
+    ]
+  }

@@ -1,6 +1,9 @@
 # include "World.hpp"
 # include "WorldParser.hpp"
 # include <iostream>
+
+# include <random>
+
 using namespace std;
 
 World::World()
@@ -83,8 +86,19 @@ void World::Parse(string path)
         o2 = {stod(coord[0]), stod(coord[1])};
 
         // create joint
-        RevoluteJoint* revJoint = new RevoluteJoint(&this->bodies[b1], o1, &this->bodies[b2], o2);
-        jointList.push_back(revJoint);
+        if (t == "PRISMATIC")
+        {
+            PrismaticJoint* prismaticJoint = new PrismaticJoint(&this->bodies[b1], o1, &this->bodies[b2], o2);
+            jointList.push_back(prismaticJoint);
+        }
+        else if (t == "REVOLUTE")
+        {
+            RevoluteJoint* revJoint = new RevoluteJoint(&this->bodies[b1], o1, &this->bodies[b2], o2);
+            jointList.push_back(revJoint);
+        }
+
+        // RevoluteJoint* revJoint = new RevoluteJoint(&this->bodies[b1], o1, &this->bodies[b2], o2);
+        // jointList.push_back(revJoint);
 
     }
 }
@@ -112,6 +126,7 @@ void World::Init(string name)
     string path = "/home/hebb/project/physics2d/src/presets/";
     Parse(path + name + ".json");
 
+    SetState(PAUSE);
 }
 
 void World::Reset()
@@ -129,9 +144,7 @@ void World::Step()
     {
         // - force generation
         Vector2 gravity = {.0, -GRAVITY * 1 * bodies[i].GetMass()};
-        SCALAR torque = 1;
         bodies[i].AddForce(gravity);
-        // bodies[i].AddTorque(torque);
     }
 
     // apply environment command. need initialize.
@@ -160,7 +173,19 @@ void World::Step()
             {
             }
         }
+
+        // control test
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
+        double rx = (dist(gen)-.5) / 50.0;
+        double ry = (dist(gen)-.5) / 50.0;
+        // bodies[i].AddRotationalImpulseAt(SCALAR(0.01), Vector2(-.0, 0.0));
+        bodies[i].AddImpulseAt(Vector2(rx, ry), bodies[i].GetPosition() - Vector2(-0, 0.0));
+        
+        
     }
+    
 
     // init joint
     for (int i = 0; i < jointList.size(); i ++)
@@ -342,6 +367,11 @@ bool World::IsCollide(Body* body1, Body* body2)
     }
 
     return false;
+}
+
+World::State World::GetState()
+{
+    return state;
 }
 
 void World::SetState(State s)

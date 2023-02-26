@@ -15,7 +15,6 @@ MainWindow::MainWindow()
 	menuBar->setLayout(menuLayout);
 	presetComboBox = new QComboBox();
 	playButton = new QPushButton("PLAY");
-	pauseButton = new QPushButton("PAUSE");
 	stepButton = new QPushButton("STEP");
 	resetButton = new QPushButton("RESET");
 
@@ -38,7 +37,6 @@ MainWindow::MainWindow()
 
 	menuLayout->addWidget(presetComboBox);
 	menuLayout->addWidget(playButton);
-	menuLayout->addWidget(pauseButton);
 	menuLayout->addWidget(stepButton);
 	menuLayout->addWidget(resetButton);
 	
@@ -85,7 +83,6 @@ void MainWindow::SetApp(TestApp* app)
 {
 	this->app = app;
 	connect(playButton, SIGNAL (clicked()), app, SLOT (Run()));
-	connect(pauseButton, SIGNAL (clicked()), app, SLOT (Pause()));
 	connect(stepButton, SIGNAL (clicked()), app, SLOT (SingleStep()));
     connect(resetButton, SIGNAL (clicked()), app, SLOT (Reset()));
 

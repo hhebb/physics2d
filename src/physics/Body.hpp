@@ -57,6 +57,7 @@ public:
     void AddForce(Vector2);
     void AddTorque(SCALAR);
     void AddImpulseAt(Vector2, Vector2);
+    void AddRotationalImpulseAt(SCALAR, Vector2);
     void AddJointImpulse(Vector2 v, SCALAR a);
     void AddVelocity(Vector2 v);
     void AddAngularVelocity(SCALAR a);

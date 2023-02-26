@@ -16,7 +16,6 @@ signals:
 public slots:
     void Run();
     void SingleStep();
-    void Pause();
     void Reset();
     void setReady();
     void SetPreset(QString name);

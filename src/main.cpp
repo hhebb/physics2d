@@ -23,7 +23,6 @@ int main(int argc, char **argv) {
 	mainWindow->SetApp(testApp);
 	mainWindow->SetWindow(window);
 	testApp->InitApp();
-
 	
 	mainWindow->show();
 

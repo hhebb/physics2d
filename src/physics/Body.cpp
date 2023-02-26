@@ -142,6 +142,22 @@ void Body::AddImpulseAt(Vector2 impulse, Vector2 pos)
     angularVelocity += rotation_impulse * inverseInertia;
 }
 
+// void Body::AddRotationalImpulseAt(SCALAR rotImpulse, Vector2 pos)
+// {
+//     // dynamics for rotaitonal impulse at arbitrary point.
+//     // for collision solve.
+//     Vector2 localPos = position + pos;
+//     Vector2 r = Vector2(localPos - position);
+//     Vector2 J = r.Cross(-rotImpulse); // perp vector to r_vector.
+//     double M = r.Cross(J);
+
+
+//     // SCALAR rotation_impulse = rotImpulse;
+
+//     velocity += J * inverseMass;
+//     angularVelocity += M * inverseInertia;
+// }
+
 void Body::AddJointImpulse(Vector2 v, SCALAR a)
 {
     velocity += v;
