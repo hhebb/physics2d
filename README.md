@@ -33,7 +33,7 @@ make physics
 
 > Chain (revolute joint)
 
-![](/images/chain.gif)
+![](/images/chain_1.gif)
 
 > Free fall
 
