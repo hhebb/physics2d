@@ -96,12 +96,47 @@ void World::Parse(string path)
             RevoluteJoint* revJoint = new RevoluteJoint(&this->bodies[b1], o1, &this->bodies[b2], o2);
             jointList.push_back(revJoint);
         }
+        else{}
+    }
 
-        // RevoluteJoint* revJoint = new RevoluteJoint(&this->bodies[b1], o1, &this->bodies[b2], o2);
-        // jointList.push_back(revJoint);
+    // parse action
+    int actionCount = root["ACTIONS"].size();
+    Json::Value actions = root["ACTIONS"];
 
+    for (int i = 0; i < actionCount; i ++)
+    {
+        // define
+        int body;
+        string t;
+        SCALAR mag;
+        Vector2 p;
+        Vector2 d;
+
+        // parse
+        body = actions[i]["BODY"].asInt();
+        t = actions[i]["TYPE"].asString();
+        mag = actions[i]["MAGNITUDE"].asFloat();
+        
+        vector<string> point = Split(actions[i]["POINT"].asString(), ',');
+        vector<string> direc = Split(actions[i]["DIRECTION"].asString(), ',');
+
+        p = {stod(point[0]), stod(point[1])};
+        d = {stod(direc[0]), stod(direc[1])};
+
+        // create action instances
+        if (t == "DISCRETE")
+        {
+            Action* action = new Action();
+            action->id = body;
+            action->point = p;
+            action->direction = d;
+            action->magnitude = mag;
+
+            actionList.push_back(action);
+        }
     }
 }
+
 
 vector<string> World::Split(string str, char delim)
 {
@@ -173,17 +208,22 @@ void World::Step()
             {
             }
         }
+    }
 
+    // action impulse apply
+    for (int i = 0; i < actionList.size(); i ++)
+    {
         // control test
         random_device rd;
         mt19937 gen(rd());
         uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
-        double rx = (dist(gen)-.5) / 50.0;
+        double rx = (dist(gen)-.5) / 1000.0;
         double ry = (dist(gen)-.5) / 50.0;
-        // bodies[i].AddRotationalImpulseAt(SCALAR(0.01), Vector2(-.0, 0.0));
-        // bodies[i].AddImpulseAt(Vector2(rx, ry), bodies[i].GetPosition() - Vector2(-0, 0.0));
-        
-        
+
+        Vector2 pos = actionList[i]->point + bodies[actionList[i]->id].GetPosition();
+        Vector2 impulse = actionList[i]->direction.SimpleRotate(bodies[actionList[i]->id].GetRotation());
+        bodies[actionList[i]->id].AddImpulseAt(impulse*rx, pos);
+
     }
     
 

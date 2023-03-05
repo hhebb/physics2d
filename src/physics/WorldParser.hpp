@@ -12,6 +12,7 @@ using namespace std;
 class WorldParser
 {
 public:
+    Json::Value root;
     string testName;
     vector<POLY_DATA> polys;
     vector<Vector2> positions;
@@ -20,6 +21,10 @@ public:
     vector<int> layers;
 
     void Parse(string path);
+    // vector<Body> ParseBodies();
+    // vector<Joint*> ParseJoints();
+    // vector<Action*> ParseActions();
+
     vector<string> Split(string str, char delim);
 };
 

@@ -135,6 +135,9 @@ void Body::AddTorque(SCALAR t)
 void Body::AddImpulseAt(Vector2 impulse, Vector2 pos)
 {
     // dynamics for impulse at arbitrary point.
+    // impulse: world coord
+    // pos: world coord
+    
     // for collision solve.
     SCALAR rotation_impulse = (pos - position).Cross(impulse);
 

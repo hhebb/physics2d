@@ -1,7 +1,9 @@
 {
-    "TEST_NAME": "chain",
+    "TEST_NAME": "snake",
     "BODIES": [
       {
+        "ID": 0,
+        "NAME": "BOTTOM",
         "TYPE": 2,
         "LAYER": 0,
         "VERTICES": [
@@ -14,6 +16,8 @@
         "ROTATION": 0
       },
       {
+        "ID": 1,
+        "NAME": "LINK_0",
         "TYPE": 0,
         "LAYER": 1,
         "VERTICES": [
@@ -26,6 +30,8 @@
         "ROTATION": 0
       },
       {
+        "ID": 2,
+        "NAME": "LINK_1",
         "TYPE": 0,
         "LAYER": 1,
         "VERTICES": [
@@ -38,6 +44,8 @@
         "ROTATION": -0.1
       },
       {
+        "ID": 3,
+        "NAME": "LINK_2",
         "TYPE": 0,
         "LAYER": 1,
         "VERTICES": [
@@ -64,6 +72,29 @@
         "BODY_B": 3,
         "OFFSET_A": "0.25, 0.0",
         "OFFSET_B": "-0.25, 0.0"
+      }
+    ],
+    "ACTIONS": [
+      {
+        "BODY": 1,
+        "TYPE": "DISCRETE",
+        "POINT": "0.25, 0.05",
+        "DIRECTION": "0, 1",
+        "MAGNITUDE": 1.0
+      },
+      {
+        "BODY": 2,
+        "TYPE": "DISCRETE",
+        "POINT": "0.25, 0.05",
+        "DIRECTION": "0, 1",
+        "MAGNITUDE": 1.0
+      },
+      {
+        "BODY": 3,
+        "TYPE": "DISCRETE",
+        "POINT": "0.25, 0.05",
+        "DIRECTION": "0, 20",
+        "MAGNITUDE": 1.0
       }
     ]
   }

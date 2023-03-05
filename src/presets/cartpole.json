@@ -1,7 +1,9 @@
 {
-    "TEST_NAME": "basic revolute",
+    "TEST_NAME": "cart pole",
     "BODIES": [
       {
+        "ID": 0,
+        "NAME": "CART",
         "TYPE": 0,
         "LAYER": 0,
         "VERTICES": [
@@ -14,6 +16,8 @@
         "ROTATION": 0
       },
       {
+        "ID": 1,
+        "NAME": "HORIZON",
         "TYPE": 2,
         "LAYER": 0,
         "VERTICES": [
@@ -26,6 +30,8 @@
         "ROTATION": 0
       },
       {
+        "ID": 2,
+        "NAME": "POLE",
         "TYPE": 0,
         "LAYER": 0,
         "VERTICES": [
@@ -52,6 +58,15 @@
         "BODY_B": 2,
         "OFFSET_A": "0.0, 0.0",
         "OFFSET_B": "0.3, 0.0"
+      }
+    ],
+    "ACTIONS": [
+      {
+        "BODY": 0,
+        "TYPE": "DISCRETE",
+        "POINT": "0, 0",
+        "DIRECTION": "1.0, 0",
+        "MAGNITUDE": 1.0
       }
     ]
   }

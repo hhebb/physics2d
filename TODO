@@ -1,10 +1,9 @@
 [TODO]
-* create demo big world
 * control, action
-    * add impuse interface
-    * add force, torque
+    * add 'action interface' to env preset
     * method for control - each env preset
     * keyboard input?
+* refactoring for world parser
 * implement other joints
     * spring
 * visualization diversity
@@ -21,3 +20,27 @@
     * openAI gymnasium
     * rllib
 * 3D version
+
+
+---
+## note / memo
+
+AddImpulse method
+- impulse, apply point vectors are world coord
+
+to json
+- body id
+- apply point - local
+- apply direction - local
+- apply impulse magnitude
+- action type - discrete? continuous?
+
+world logic
+- velocity integrate to all action point.
+- receive action signals
+
+action struct
+- body id
+- point
+- direction
+- magnitude

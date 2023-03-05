@@ -2,6 +2,8 @@
     "TEST_NAME": "basic revolute",
     "BODIES": [
       {
+        "ID": 0,
+        "NAME": "BASE",
         "TYPE": 2,
         "LAYER": 0,
         "VERTICES": [
@@ -14,6 +16,8 @@
         "ROTATION": 0
       },
       {
+        "ID": 1,
+        "NAME": "TOP",
         "TYPE": 0,
         "LAYER": 0,
         "VERTICES": [
@@ -35,13 +39,20 @@
         "OFFSET_B": "0.5, 0.0"
       }
     ],
-    "controls": [
-        {
-            "TYPE: "", 
-            "BODY": "",
-            "JOINT": "",
-            "POSITION": "",
+    "ACTIONS": [
+      {
+        "BODY": 1,
+        "TYPE": "DISCRETE",
+        "POINT": "0.0, 0.3",
+        "DIRECTION": "0.1, 0.3",
+        "MAGNITUDE": 1
 
-        }
+      }
+    ],
+    "STATES": [
+
+    ],
+    "REWARD": [
+      
     ]
   }

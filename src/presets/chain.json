@@ -2,6 +2,8 @@
     "TEST_NAME": "chain",
     "BODIES": [
       {
+        "ID": 0,
+        "NAME": "CEILLING",
         "TYPE": 2,
         "LAYER": 0,
         "VERTICES": [
@@ -14,6 +16,8 @@
         "ROTATION": 0
       },
       {
+        "ID": 1,
+        "NAME": "LINK_1",
         "TYPE": 0,
         "LAYER": 0,
         "VERTICES": [
@@ -26,6 +30,8 @@
         "ROTATION": 45
       },
       {
+        "ID": 2,
+        "NAME": "LINK_2",
         "TYPE": 0,
         "LAYER": 0,
         "VERTICES": [
@@ -38,6 +44,8 @@
         "ROTATION": -45
       },
       {
+        "ID": 3,
+        "NAME": "LINK_3",
         "TYPE": 0,
         "LAYER": 0,
         "VERTICES": [
@@ -72,5 +80,15 @@
         "OFFSET_A": "0.25, 0.0",
         "OFFSET_B": "-0.25, 0.0"
       }
+    ],
+    "ACTIONS": [
+      {
+        "BODY": 3,
+        "TYPE": "DISCRETE",
+        "POINT": "0.25, 0.05",
+        "DIRECTION": "0, 1",
+        "MAGNITUDE": 1.0
+      }
     ]
+
   }

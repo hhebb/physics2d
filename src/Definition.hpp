@@ -392,7 +392,14 @@ struct ContactPoint
     SCALAR v_rel;
     double e;
     double bias;
+};
 
+struct Action
+{
+    int id;
+    Vector2 point;
+    Vector2 direction;
+    SCALAR magnitude;
 };
 
 struct ClippedPoints

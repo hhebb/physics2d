@@ -17,6 +17,7 @@
 # include "DistanceJoint.hpp"
 # include "PrismaticJoint.hpp"
 
+
 class World: public QThread
 {
     Q_OBJECT
@@ -38,6 +39,7 @@ private:
     POLY_LIST vertices;
     vector<Collision*> collisionList; // collision manager 만들어서 관리하도록 수정해야함.
     vector<Joint*> jointList; // manager 만들어서 관리하도록 수정해야함.
+    vector<Action*> actionList;
     void run();
     int colVelIter;
     int colPosIter;
