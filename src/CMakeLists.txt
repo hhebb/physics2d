@@ -34,6 +34,7 @@ set(PHYSICS_SOURCES
         physics/RevoluteJoint.cpp
         physics/PrismaticJoint.cpp
         physics/WorldParser.cpp
+        proxy.cpp
 )
 
 # add build target.

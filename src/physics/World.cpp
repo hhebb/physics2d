@@ -13,6 +13,8 @@ World::World()
     colPosIter = 8;
     jointVelIter = 8;
     jointPosIter = 1;
+
+    proxy.SetReady(false);
 }
 
 void World::Parse(string path)
@@ -160,7 +162,6 @@ void World::Init(string name)
     // parsing 방식으로 create.
     string path = "/home/hebb/project/physics2d/src/presets/";
     Parse(path + name + ".json");
-
     SetState(PAUSE);
 }
 
@@ -211,18 +212,19 @@ void World::Step()
     }
 
     // action impulse apply
+    vector<SCALAR> tmp_action = proxy.GetAction();
     for (int i = 0; i < actionList.size(); i ++)
     {
         // control test
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
-        double rx = (dist(gen)-.5) / 1000.0;
-        double ry = (dist(gen)-.5) / 50.0;
+        // random_device rd;
+        // mt19937 gen(rd());
+        // uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
+        // double rx = (dist(gen)-.5) / 1000.0;
+        // double ry = (dist(gen)-.5) / 50.0;
 
         Vector2 pos = actionList[i]->point + bodies[actionList[i]->id].GetPosition();
         Vector2 impulse = actionList[i]->direction.SimpleRotate(bodies[actionList[i]->id].GetRotation());
-        bodies[actionList[i]->id].AddImpulseAt(impulse*rx, pos);
+        bodies[actionList[i]->id].AddImpulseAt(impulse*tmp_action[i], pos);
 
     }
     
@@ -303,6 +305,17 @@ void World::Step()
 
     // clear collisions
     collisionList.clear();
+
+    // communication with proxy
+    vector<Vector2> tmp_state;
+    for (int i = 0; i < bodies.size(); i ++)
+    {
+        tmp_state.push_back(bodies[i].GetPosition());
+        tmp_state.push_back(bodies[i].GetVelocity());
+    }
+    proxy.InputState(tmp_state);
+    proxy.InputReward(1);
+    proxy.SetReady(true);
 }
 
 void World::SetCommand(Command com)

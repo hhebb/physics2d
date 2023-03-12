@@ -2,7 +2,6 @@
 * control, action
     * add 'action interface' to env preset
     * method for control - each env preset
-    * keyboard input?
 * refactoring for world parser
 * implement other joints
     * spring
@@ -23,7 +22,34 @@
 
 
 ---
-## note / memo
+# note / memo
+---
+
+## proxy design
+
+
+
+
+def Step(action):
+    # send action to P.E
+    proxy.InputAction(action)
+    
+    # wait for calculatiog
+    while proxy.ready:
+        pass
+    
+    # get updated state, reward
+    state = proxy.GetState()
+    reward = proxy.GetReward()
+
+    return state, reward
+
+
+---
+
+
+
+## for environment presets
 
 AddImpulse method
 - impulse, apply point vectors are world coord
