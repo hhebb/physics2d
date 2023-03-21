@@ -1,6 +1,10 @@
 # test build targets
 cmake_minimum_required(VERSION 3.0.0)
 
+add_subdirectory(pybind11)
+pybind11_add_module(bind_test bind_test.cpp)
+# pybind11_add_module(proxy proxy.cpp)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -46,3 +50,5 @@ target_link_libraries(physics GL)
 target_link_libraries(physics GLU)
 target_link_libraries(physics glut)
 target_link_libraries(physics jsoncpp)
+target_link_libraries(bind_test PRIVATE pybind11::module)
+# target_link_libraries(proxy PRIVATE pybind11::module)

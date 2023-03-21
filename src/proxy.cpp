@@ -1,5 +1,7 @@
 # include "proxy.hpp"
+# include "bind_test.cpp"
 # include <random>
+// # include <pybind11/pybind11.h>
 
 
 void Proxy::InputAction(vector<SCALAR> action)
@@ -54,3 +56,9 @@ bool Proxy::GetReadyState()
 {
     return READY;
 }
+
+// PYBIND11_MODULE(proxy, m) {
+//     m.doc() = "proxy binder"; // optional module docstring
+
+//     m.def("input_action", &Proxy::InputAction, "--");
+// }

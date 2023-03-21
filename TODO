@@ -1,4 +1,10 @@
 [TODO]
+* revision pybind structure
+    * need to make new function.
+    * can't interaction?
+    * just use physics simulation only.
+    * just need physics pipeline function.
+    * only need bind pipeline function.
 * control, action
     * add 'action interface' to env preset
     * method for control - each env preset
@@ -25,25 +31,22 @@
 # note / memo
 ---
 
+
 ## proxy design
 
-
-
-
-def Step(action):
-    # send action to P.E
-    proxy.InputAction(action)
+vector<VERTEX_LIST> world::Step(vector<Vector2> action)
+{
+    'physics pipeline'
+            .
+            .
+            .
     
-    # wait for calculatiog
-    while proxy.ready:
-        pass
-    
-    # get updated state, reward
-    state = proxy.GetState()
-    reward = proxy.GetReward()
+    // apply action
 
-    return state, reward
-
+    vector<Vector2> state = new_state;
+    SCALAR reward = GetReward(state);
+    return state, reward;
+}
 
 ---
 
