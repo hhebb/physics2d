@@ -1,10 +1,6 @@
 # test build targets
 cmake_minimum_required(VERSION 3.0.0)
 
-add_subdirectory(pybind11)
-pybind11_add_module(bind_test bind_test.cpp)
-# pybind11_add_module(proxy proxy.cpp)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -38,17 +34,43 @@ set(PHYSICS_SOURCES
         physics/RevoluteJoint.cpp
         physics/PrismaticJoint.cpp
         physics/WorldParser.cpp
-        proxy.cpp
 )
 
 # add build target.
 add_executable(physics ${PHYSICS_SOURCES})
 
 # link founded libraries.
-target_link_libraries(physics Qt5::Widgets Qt5::OpenGL ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
-target_link_libraries(physics GL)
-target_link_libraries(physics GLU)
-target_link_libraries(physics glut)
-target_link_libraries(physics jsoncpp)
-target_link_libraries(bind_test PRIVATE pybind11::module)
-# target_link_libraries(proxy PRIVATE pybind11::module)
+target_link_libraries(physics PRIVATE Qt5::Widgets Qt5::OpenGL ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+target_link_libraries(physics PRIVATE GL)
+target_link_libraries(physics PRIVATE GLU)
+target_link_libraries(physics PRIVATE glut)
+target_link_libraries(physics PRIVATE jsoncpp)
+
+
+######################## for pybind ##############################
+
+add_subdirectory(pybind11)
+
+# set sources for bind extension.
+set(BIND_SOURCES
+        physics/Environment.cpp
+        physics/Body.cpp
+        physics/Collider.cpp
+        physics/Collision.cpp
+        physics/Joint.cpp
+        physics/DistanceJoint.cpp
+        physics/RevoluteJoint.cpp
+        physics/PrismaticJoint.cpp
+        physics/WorldParser.cpp
+        Helper.cpp
+)
+
+# add extension
+pybind11_add_module(env ${BIND_SOURCES})
+
+# link founded libraries for pybind
+target_link_libraries(env PRIVATE Qt5::Widgets Qt5::OpenGL ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+target_link_libraries(env PRIVATE pybind11::module)
+target_link_libraries(env PRIVATE jsoncpp)
+
+

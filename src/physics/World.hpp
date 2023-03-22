@@ -8,7 +8,6 @@
 # include <iostream>
 # include <sstream>
 
-# include "proxy.hpp"
 # include "Body.hpp"
 # include "Collider.hpp"
 # include "Collision.hpp"
@@ -35,7 +34,6 @@ private:
     vector<BodyType> bTypes;
     vector<int> layers;
 
-    Proxy proxy;
     vector<Body> bodies;
     Command command;
     POLY_LIST vertices;

@@ -1,10 +1,6 @@
 [TODO]
-* revision pybind structure
-    * need to make new function.
-    * can't interaction?
-    * just use physics simulation only.
-    * just need physics pipeline function.
-    * only need bind pipeline function.
+* pybind test done, need to complete environment.
+    * don't need proxy.
 * control, action
     * add 'action interface' to env preset
     * method for control - each env preset

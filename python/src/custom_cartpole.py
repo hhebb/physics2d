@@ -1,8 +1,7 @@
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
-#import proxy
-import bind_test
+import env
 
 
 class CustomCartpoleEnv(gym.Env):
@@ -107,4 +106,7 @@ class CustomCartpoleEnv(gym.Env):
             pass
 
 if __name__ == '__main__':
-    print(bind_test.add(10, 12))
+    environment = env.Environment()
+
+    for i in range(100):
+        print(environment.Step([1, 2, 3, 4]))
