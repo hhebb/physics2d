@@ -14,6 +14,8 @@ Environment::Environment()
     colPosIter = 8;
     jointVelIter = 8;
     jointPosIter = 1;
+
+    Parse("/home/hebb/project/physics2d/src/presets/cartpole.json");
 }
 
 void Environment::Parse(string path)
@@ -198,37 +200,6 @@ vector<Body> Environment::GetBodies()
     return bodies;
 }
 
-void Environment::run()
-{
-    // 이 메서드에서 스레드 work 를 실행한다.
-    // 모든 물리 연산은 여기서 수행되고 결과를 emit 한다.
-    // GL window 가 vsync 가 될 때까지 대기를 하므로, 렌더링을 켜면 연산이 느려진다.
-
-    while(state == PLAY || state == SINGLE_STEP)
-    {
-        // main physics.
-        while(!ready) {}
-        ready = false;
-        // count ++;
-        // Step();
-
-        // emit for rendering.
-        QVariant var;
-        vertices.clear();
-
-        for (int i = 0; i < bodies.size(); i ++)
-        {
-            vertices.push_back(bodies[i].GetCollider()->GetVertices());
-        }
-
-        var.setValue(vertices);
-        emit physicsUpdate(var);
-        
-        if (state == SINGLE_STEP)
-            break;
-    }
-    
-}
 
 bool Environment::IsCollide(Body* body1, Body* body2)
 {
@@ -350,16 +321,15 @@ vector<SCALAR> Environment::Step(vector<SCALAR> action)
     for (int i = 0; i < actionList.size(); i ++)
     {
         // control test
-        // random_device rd;
-        // mt19937 gen(rd());
-        // uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
-        // double rx = (dist(gen)-.5) / 1000.0;
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
+        double rx = (dist(gen)-.5) / 1000.0;
         // double ry = (dist(gen)-.5) / 50.0;
 
         Vector2 pos = actionList[i]->point + bodies[actionList[i]->id].GetPosition();
         Vector2 impulse = actionList[i]->direction.SimpleRotate(bodies[actionList[i]->id].GetRotation());
-        // bodies[actionList[i]->id].AddImpulseAt(impulse*tmp_action[i], pos);
-
+        bodies[actionList[i]->id].AddImpulseAt(impulse*rx*actionList[i]->magnitude*action[i], pos);
     }
     
 
@@ -448,7 +418,7 @@ vector<SCALAR> Environment::Step(vector<SCALAR> action)
         tmp_state.push_back(bodies[i].GetVelocity());
     }
 
-    vector<SCALAR> currentState = {1, 2, 3};
+    vector<SCALAR> currentState = {bodies[0].GetPosition().x, bodies[2].GetRotation()};
     return currentState;
 }
 

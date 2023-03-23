@@ -1,5 +1,6 @@
 {
     "TEST_NAME": "cart pole",
+
     "BODIES": [
       {
         "ID": 0,
@@ -41,9 +42,10 @@
           "0.0, 0.1"
         ],
         "POSITION": "0.0, -0.3",
-        "ROTATION": 60
+        "ROTATION": 0.1
       }
     ],
+
     "JOINTS": [
       {
         "TYPE": "PRISMATIC",
@@ -60,13 +62,14 @@
         "OFFSET_B": "0.3, 0.0"
       }
     ],
+    
     "ACTIONS": [
       {
         "BODY": 0,
         "TYPE": "DISCRETE",
         "POINT": "0, 0",
         "DIRECTION": "1.0, 0",
-        "MAGNITUDE": 1.0
+        "MAGNITUDE": 0.01
       }
     ]
   }

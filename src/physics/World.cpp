@@ -133,6 +133,7 @@ void World::Parse(string path)
             action->magnitude = mag;
 
             actionList.push_back(action);
+
         }
     }
 }
@@ -207,6 +208,23 @@ void World::Step()
             {
             }
         }
+    }
+    
+    // action impulse apply
+    // vector<SCALAR> tmp_action = proxy.GetAction();
+    for (int i = 0; i < actionList.size(); i ++)
+    {
+        // control test
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_real_distribution<double> dist(/* 평균 = */ 0, /* 표준 편차 = */ 1);
+        double rx = (dist(gen)-.5) / 1000.0;
+        // double ry = (dist(gen)-.5) / 50.0;
+
+        Vector2 pos = actionList[i]->point + bodies[actionList[i]->id].GetPosition();
+        Vector2 impulse = actionList[i]->direction.SimpleRotate(bodies[actionList[i]->id].GetRotation());
+        bodies[actionList[i]->id].AddImpulseAt(impulse*rx*actionList[i]->magnitude, pos);
+
     }
     
 

@@ -1,8 +1,8 @@
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
+import random
 import env
-
 
 class CustomCartpoleEnv(gym.Env):
     metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 4}
@@ -108,5 +108,7 @@ class CustomCartpoleEnv(gym.Env):
 if __name__ == '__main__':
     environment = env.Environment()
 
-    for i in range(100):
-        print(environment.Step([1, 2, 3, 4]))
+    while True:
+        a = -1 if np.random.random() > .5 else 1
+        pos, rot = environment.Step([a])
+        print('pos:', pos, 'rot:', rot*180/3.14)
