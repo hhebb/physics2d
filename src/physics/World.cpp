@@ -138,7 +138,6 @@ void World::Parse(string path)
     }
 }
 
-
 vector<string> World::Split(string str, char delim)
 {
     vector<string> result;
@@ -146,7 +145,7 @@ vector<string> World::Split(string str, char delim)
     string item;
 
     while (getline (ss, item, delim)) {
-        result.push_back (item);
+        result.push_back(item);
     }
 
     return result;

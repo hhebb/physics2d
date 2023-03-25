@@ -34,6 +34,8 @@ private:
     vector<SCALAR> rotations;
     vector<BodyType> bTypes;
     vector<int> layers;
+    int statesCount;
+    Json::Value states;
 
     // Proxy proxy;
     vector<Body> bodies;
@@ -42,6 +44,7 @@ private:
     vector<Collision*> collisionList; // collision manager 만들어서 관리하도록 수정해야함.
     vector<Joint*> jointList; // manager 만들어서 관리하도록 수정해야함.
     vector<Action*> actionList;
+    vector<SCALAR> stateList;
     int colVelIter;
     int colPosIter;
     int jointVelIter;
@@ -53,6 +56,7 @@ public:
     bool ready;
     Environment();
     void Parse(string path);
+    void FilterState();
     vector<string> Split(string str, char delim);
     State GetState();
     void Init(string name);
@@ -73,7 +77,11 @@ public:
     void SetPosJointIter(int value);
 
     // step
-    vector<SCALAR> Step(vector<SCALAR> action);
+    void Step(vector<SCALAR> action);
+    vector<SCALAR> GetEnvState();
+    SCALAR GetEnvReward();
+    bool GetEnvIsDone();
+    vector<SCALAR> GetEnvInfo();
     
     
 };

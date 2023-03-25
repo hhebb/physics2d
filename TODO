@@ -1,9 +1,6 @@
 [TODO]
-* pybind test done, need to complete environment.
-    * don't need proxy.
-* control, action
-    * add 'action interface' to env preset
-    * method for control - each env preset
+* need to create file per env.
+    * json env file should be simple.
 * refactoring for world parser
 * implement other joints
     * spring

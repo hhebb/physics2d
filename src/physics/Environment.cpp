@@ -138,8 +138,60 @@ void Environment::Parse(string path)
             actionList.push_back(action);
         }
     }
+
+    // parse states
+    statesCount = root["STATES"].size();
+    states = root["STATES"];
+
 }
 
+void Environment::FilterState()
+{
+    // comment
+    stateList.clear();
+
+    for (int i = 0; i < statesCount; i ++)
+    {
+        // define
+        int body;
+        string attr, axis;
+        SCALAR s;
+
+        // parse
+        body = states[i]["BODY"].asInt();        
+        vector<string> tmp = Split(states[i]["ATTR"].asString(), '_');
+
+        attr = tmp[0];
+        axis = tmp[1];
+
+        char attrc = attr[0];
+        switch (attrc)
+        {
+        case 'S': // position
+            if (axis == "X")
+                s = this->bodies[body].GetPosition().x;
+            else if (axis == "Y")
+                s = this->bodies[body].GetPosition().y;
+            break;
+        case 'V': // velocity
+            if (axis == "X")
+                s = this->bodies[body].GetVelocity().x;
+            else if (axis == "Y")
+                s = this->bodies[body].GetVelocity().y;
+            break;
+        case 'R': //rotation
+            s = this->bodies[body].GetRotation();
+            break;
+        case 'O': // angular velocity
+            s = this->bodies[body].GetAngularVelocity();
+            break;
+        default:
+            break;
+        }
+
+        stateList.push_back(s);
+    }
+}
 
 vector<string> Environment::Split(string str, char delim)
 {
@@ -148,7 +200,7 @@ vector<string> Environment::Split(string str, char delim)
     string item;
 
     while (getline (ss, item, delim)) {
-        result.push_back (item);
+        result.push_back(item);
     }
 
     return result;
@@ -275,7 +327,7 @@ void Environment::SetPosJointIter(int value)
 }
 
 
-vector<SCALAR> Environment::Step(vector<SCALAR> action)
+void Environment::Step(vector<SCALAR> action)
 {
     // physics pipeline.
     // obj 들 update, vertices update
@@ -418,9 +470,29 @@ vector<SCALAR> Environment::Step(vector<SCALAR> action)
         tmp_state.push_back(bodies[i].GetVelocity());
     }
 
-    vector<SCALAR> currentState = {bodies[0].GetPosition().x, bodies[2].GetRotation()};
-    return currentState;
+    FilterState();
 }
+
+vector<SCALAR> Environment::GetEnvState()
+{
+    return this->stateList;
+}
+
+SCALAR Environment::GetEnvReward()
+{
+    return 1;
+}
+
+bool Environment::GetEnvIsDone()
+{
+    return false;
+}
+
+vector<SCALAR> Environment::GetEnvInfo()
+{
+    return vector<SCALAR> {0};
+}
+
 
 
 //
@@ -434,6 +506,10 @@ PYBIND11_MODULE(env, m) {
 
     pybind11::class_<Environment>(m, "Environment")
         .def(pybind11::init<>())
-        .def("Step", &Environment::Step);
+        .def("Step", &Environment::Step)
+        .def("GetEnvState", &Environment::GetEnvState)
+        .def("GetEnvReward", &Environment::GetEnvReward)
+        .def("GetEnvIsDone", &Environment::GetEnvIsDone)
+        .def("GetEnvInfo", &Environment::GetEnvInfo);
     m.def("add", &add, "A function which adds two numbers");
 }
