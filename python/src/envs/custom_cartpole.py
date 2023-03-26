@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/home/hebb/project/physics2d/python/src/envs')
-
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
@@ -52,7 +49,7 @@ class CustomCartpoleEnv(gym.Env):
         observation = self.environment.GetEnvState()
         info = self.environment.GetEnvInfo()
 
-        return observation, info
+        return {'obs': observation, 'info': info}
 
 
     def step(self, action):
@@ -60,10 +57,13 @@ class CustomCartpoleEnv(gym.Env):
         observation = self.environment.GetEnvState()
         reward = self.environment.GetEnvReward()
         done = self.environment.GetEnvIsDone()
-        info = self.environment.GetEnvInfo()
+        info = {'info': self.environment.GetEnvInfo()}
 
         # if self.render_mode == "human":
         #     self._render_frame()
+
+        # re-forming
+        observation = {'angle': observation[1], 'horizontal': observation[0]}
 
         return observation, reward, done, info
 
@@ -71,16 +71,3 @@ class CustomCartpoleEnv(gym.Env):
     def close(self):
         if self.window is not None:
             pass
-
-# if __name__ == '__main__':
-
-#     while True:
-#         a = -1.0 if np.random.random() > .5 else 1.0
-#         environment.Step([a])
-#         state = environment.GetEnvState()
-#         reward = environment.GetEnvReward()
-#         done = environment.GetEnvIsDone()
-#         info = environment.GetEnvInfo()
-
-#         print('state:', state, 'reward:', reward, 'done:', done, 'info:', info)
-#         # print('pos:', pos, 'rot:', rot*180/3.14)

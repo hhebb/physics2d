@@ -17,7 +17,7 @@
 # include "RevoluteJoint.hpp"
 # include "DistanceJoint.hpp"
 # include "PrismaticJoint.hpp"
-
+# include "envs/EnvHeaders.hpp"
 
 class Environment: public QThread
 {
@@ -36,6 +36,7 @@ private:
     vector<int> layers;
     int statesCount;
     Json::Value states;
+    BaseEnv* env;
 
     // Proxy proxy;
     vector<Body> bodies;

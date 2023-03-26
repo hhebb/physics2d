@@ -1,6 +1,7 @@
 [TODO]
-* need to create file per env.
-    * json env file should be simple.
+* rendering process
+* compiled library should be automatically import
+* need to refactoring.
 * refactoring for world parser
 * implement other joints
     * spring

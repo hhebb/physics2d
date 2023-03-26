@@ -16,6 +16,8 @@ Environment::Environment()
     jointPosIter = 1;
 
     Parse("/home/hebb/project/physics2d/src/presets/cartpole.json");
+    env = new Cartpole();
+
 }
 
 void Environment::Parse(string path)
@@ -480,12 +482,14 @@ vector<SCALAR> Environment::GetEnvState()
 
 SCALAR Environment::GetEnvReward()
 {
-    return 1;
+    SCALAR r = env->GetReward(stateList);
+    return r;
 }
 
 bool Environment::GetEnvIsDone()
 {
-    return false;
+    bool d = env->IsDone(stateList);
+    return d;
 }
 
 vector<SCALAR> Environment::GetEnvInfo()
