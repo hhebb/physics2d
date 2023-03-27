@@ -230,10 +230,6 @@ void Environment::SetCommand(Command com)
     command = com;
 }
 
-POLY_LIST Environment::GetVertices()
-{
-    return this->vertices;
-}
 
 void Environment::Create(POLY_DATA ver, Vector2 pos, SCALAR rot, int id, BodyType t)
 {
@@ -497,7 +493,24 @@ vector<SCALAR> Environment::GetEnvInfo()
     return vector<SCALAR> {0};
 }
 
+vector<vector<SCALAR>> Environment::GetEnvRenderVertices()
+{
+    vertices.clear();
+    for (int i = 0; i < bodies.size(); i ++)
+    {
+        vector<SCALAR> obj;
+        for (int j = 0; j < bodies[i].GetCollider()->GetVertices().size(); j ++)
+        {
+            obj.push_back(bodies[i].GetCollider()->GetVertices()[j].x);
+            obj.push_back(bodies[i].GetCollider()->GetVertices()[j].y);
+            obj.push_back(0.0);
+        }
 
+        vertices.push_back(obj);
+    }
+
+    return vertices;
+}
 
 //
 
@@ -514,6 +527,7 @@ PYBIND11_MODULE(env, m) {
         .def("GetEnvState", &Environment::GetEnvState)
         .def("GetEnvReward", &Environment::GetEnvReward)
         .def("GetEnvIsDone", &Environment::GetEnvIsDone)
-        .def("GetEnvInfo", &Environment::GetEnvInfo);
+        .def("GetEnvInfo", &Environment::GetEnvInfo)
+        .def("GetEnvRenderVertices", &Environment::GetEnvRenderVertices);
     m.def("add", &add, "A function which adds two numbers");
 }

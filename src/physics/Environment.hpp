@@ -41,7 +41,7 @@ private:
     // Proxy proxy;
     vector<Body> bodies;
     Command command;
-    POLY_LIST vertices;
+    vector<vector<SCALAR>> vertices;
     vector<Collision*> collisionList; // collision manager 만들어서 관리하도록 수정해야함.
     vector<Joint*> jointList; // manager 만들어서 관리하도록 수정해야함.
     vector<Action*> actionList;
@@ -63,7 +63,6 @@ public:
     void Init(string name);
     void Reset();
     void SetCommand(Command com);
-    POLY_LIST GetVertices(); // for rendering
     // id 리턴하도록 바꾸기. create.
     void Create(POLY_DATA ver, Vector2 pos, SCALAR rot, int id, BodyType t);
     void Debug();
@@ -83,6 +82,7 @@ public:
     SCALAR GetEnvReward();
     bool GetEnvIsDone();
     vector<SCALAR> GetEnvInfo();
+    vector<vector<SCALAR>> GetEnvRenderVertices();
     
     
 };

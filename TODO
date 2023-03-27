@@ -1,6 +1,7 @@
 [TODO]
 * rendering process
 * compiled library should be automatically import
+* vector<SCALAR> should re-define name
 * need to refactoring.
 * refactoring for world parser
 * implement other joints
