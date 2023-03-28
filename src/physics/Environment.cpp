@@ -503,7 +503,6 @@ vector<vector<SCALAR>> Environment::GetEnvRenderVertices()
         {
             obj.push_back(bodies[i].GetCollider()->GetVertices()[j].x);
             obj.push_back(bodies[i].GetCollider()->GetVertices()[j].y);
-            obj.push_back(0.0);
         }
 
         vertices.push_back(obj);

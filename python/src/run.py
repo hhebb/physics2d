@@ -6,6 +6,7 @@ import glfw
 import glm
 from OpenGL.GL import *
 from glfw.GLFW import *
+import time
 
 def load_shaders(vertex_shader_source, fragment_shader_source):
     # vertex shader
@@ -107,6 +108,7 @@ def main():
     
     # register key callback for escape key
     glfwSetKeyCallback(window, key_callback);
+
     # load shaders
     shader_program = load_shaders(g_vertex_shader_src, g_fragment_shader_src)
     
@@ -118,42 +120,29 @@ def main():
     VBO = glGenBuffers(1)
     glBindBuffer(GL_ARRAY_BUFFER, VBO)
     
-    # copy vertex data to VBO
-    glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices.ptr, GL_STATIC_DRAW)
-    
     # configure vertex attributes
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * glm.sizeof(glm.float32), None)
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * glm.sizeof(glm.float32), None)
     glEnableVertexAttribArray(0)
-    
+    glUseProgram(shader_program)
+
     # loop until the user closes the window
     while not glfwWindowShouldClose(window):
         # get vertices
         a = -1.0 if np.random.random() > .5 else 1.0
         s, r, d, info = env.step([a])
         objs = env.environment.GetEnvRenderVertices()
-
         
-        for obj in objs:
-            poly = print(len(obj)//3)
-
-        vertices = np.array([c for obj in objs for c in obj])
+        vertices = glm.array(glm.float32, *[c for obj in objs for c in obj])
         
         # render
-        glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices, GL_STATIC_DRAW)
+        glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices.ptr, GL_STATIC_DRAW)
         glClear(GL_COLOR_BUFFER_BIT)
-        glUseProgram(shader_program)
         glBindVertexArray(VAO)
 
         offset = 0
         for obj in objs:
-            n_poly = len(obj)//3
-            if n_poly == 3:
-                poly_name = GL_TRIANGLES
-            elif n_poly == 4:
-                poly_name = GL_QUADS
-
-            print(n_poly)
-            glDrawArrays(poly_name, offset, n_poly)
+            n_poly = len(obj)//2
+            glDrawArrays(GL_TRIANGLE_FAN, offset, n_poly)
             offset += n_poly
 
         # swap front and back buffers
@@ -161,6 +150,8 @@ def main():
 
         # poll events
         glfwPollEvents()
+
+        time.sleep(.001)
 
     # terminate glfw
     glfwTerminate()
