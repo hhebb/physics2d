@@ -2,12 +2,13 @@
 # include <random>
 # include <pybind11/pybind11.h>
 # include <pybind11/stl.h>
+# include <pybind11/stl_bind.h>
 # include "Environment.hpp"
 # include "WorldParser.hpp"
 
 using namespace std;
 
-Environment::Environment()
+Environment::Environment(string envName)
 {
     // vertices;
     colVelIter = 4;
@@ -15,8 +16,7 @@ Environment::Environment()
     jointVelIter = 8;
     jointPosIter = 1;
 
-    Parse("/home/hebb/project/physics2d/src/presets/cartpole.json");
-    env = new Cartpole();
+    Parse("/home/hebb/project/physics2d/src/presets/" + envName + ".json");
 
 }
 
@@ -471,28 +471,6 @@ void Environment::Step(vector<SCALAR> action)
     FilterState();
 }
 
-vector<SCALAR> Environment::GetEnvState()
-{
-    return this->stateList;
-}
-
-SCALAR Environment::GetEnvReward()
-{
-    SCALAR r = env->GetReward(stateList);
-    return r;
-}
-
-bool Environment::GetEnvIsDone()
-{
-    bool d = env->IsDone(stateList);
-    return d;
-}
-
-vector<SCALAR> Environment::GetEnvInfo()
-{
-    return vector<SCALAR> {0};
-}
-
 vector<vector<SCALAR>> Environment::GetEnvRenderVertices()
 {
     vertices.clear();
@@ -513,20 +491,31 @@ vector<vector<SCALAR>> Environment::GetEnvRenderVertices()
 
 //
 
-int add(int i, int j) {
-    return i + j;
-}
-
 PYBIND11_MODULE(env, m) {
     m.doc() = "environment"; // optional module docstring
 
+    pybind11::enum_<BodyType>(m, "BodyType")
+        .value("DYNAMIC", BodyType::DYNAMIC)
+        .value("KINEMATIC", BodyType::KINEMATIC)
+        .value("STATIC", BodyType::STATIC);
+
+    pybind11::class_<Vector2>(m, "Vector2")
+        .def(pybind11::init<SCALAR, SCALAR>())
+        .def_readwrite("x", &Vector2::x)
+        .def_readwrite("y", &Vector2::y);
+
     pybind11::class_<Environment>(m, "Environment")
-        .def(pybind11::init<>())
+        .def(pybind11::init<string>())
         .def("Step", &Environment::Step)
-        .def("GetEnvState", &Environment::GetEnvState)
-        .def("GetEnvReward", &Environment::GetEnvReward)
-        .def("GetEnvIsDone", &Environment::GetEnvIsDone)
-        .def("GetEnvInfo", &Environment::GetEnvInfo)
-        .def("GetEnvRenderVertices", &Environment::GetEnvRenderVertices);
-    m.def("add", &add, "A function which adds two numbers");
+        .def("GetEnvRenderVertices", &Environment::GetEnvRenderVertices)
+        .def("GetBodies", &Environment::GetBodies);
+
+    pybind11::class_<Body>(m, "Body")
+        .def(pybind11::init<vector<Vector2>, Vector2, SCALAR, int, SCALAR, BodyType>())
+        .def("GetPosition", &Body::GetPosition)
+        .def("GetRotation", &Body::GetRotation)
+        .def("GetVelocity", &Body::GetVelocity)
+        .def("GetAngularVelocity", &Body::GetAngularVelocity);
+
+
 }

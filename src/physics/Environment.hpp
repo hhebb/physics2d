@@ -17,7 +17,6 @@
 # include "RevoluteJoint.hpp"
 # include "DistanceJoint.hpp"
 # include "PrismaticJoint.hpp"
-# include "envs/EnvHeaders.hpp"
 
 class Environment: public QThread
 {
@@ -36,7 +35,6 @@ private:
     vector<int> layers;
     int statesCount;
     Json::Value states;
-    BaseEnv* env;
 
     // Proxy proxy;
     vector<Body> bodies;
@@ -55,7 +53,7 @@ public:
     enum State {PLAY, PAUSE, SINGLE_STEP};
     State state;
     bool ready;
-    Environment();
+    Environment(string envName);
     void Parse(string path);
     void FilterState();
     vector<string> Split(string str, char delim);
@@ -78,12 +76,7 @@ public:
 
     // step
     void Step(vector<SCALAR> action);
-    vector<SCALAR> GetEnvState();
-    SCALAR GetEnvReward();
-    bool GetEnvIsDone();
-    vector<SCALAR> GetEnvInfo();
-    vector<vector<SCALAR>> GetEnvRenderVertices();
-    
+    vector<vector<SCALAR>> GetEnvRenderVertices();    
     
 };
 

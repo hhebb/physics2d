@@ -31,7 +31,7 @@ class CustomCartpoleEnv(gym.Env):
         self.window = None
         self.clock = None
 
-        self.environment = env.Environment()
+        self.environment = env.Environment('cartpole')
 
 
     def _get_info(self):
@@ -46,24 +46,40 @@ class CustomCartpoleEnv(gym.Env):
         # We need the following line to seed self.np_random
         super().reset(seed=seed)
 
-        observation = self.environment.GetEnvState()
-        info = self.environment.GetEnvInfo()
+        # get bodies
+        bodies = self.environment.GetBodies()
+
+        # re-form observation
+        angle = bodies[2].GetRotation()
+        pos = bodies[0].GetPosition().x
+        observation = {'horizontal': pos, 'angle': angle}
+        
+        info = {'info': None}
 
         return {'obs': observation, 'info': info}
 
 
     def step(self, action):
         self.environment.Step(action)
-        observation = self.environment.GetEnvState()
-        reward = self.environment.GetEnvReward()
-        done = self.environment.GetEnvIsDone()
-        info = {'info': self.environment.GetEnvInfo()}
-
         # if self.render_mode == "human":
         #     self._render_frame()
 
-        # re-forming
-        observation = {'angle': observation[1], 'horizontal': observation[0]}
+        # get bodies
+        bodies = self.environment.GetBodies()
+
+        # re-form observation
+        angle = bodies[2].GetRotation()
+        pos = bodies[0].GetPosition().x
+        observation = {'horizontal': pos, 'angle': angle}
+
+        # reward
+        reward = -200 if angle > 60 or pos > 1 or pos < -1 else 1
+
+        # is done
+        done = True if angle > 60 or pos > 1 or pos < -1 else False
+
+        # info
+        info = {'info': None}
 
         return observation, reward, done, info
 

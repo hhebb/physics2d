@@ -71,16 +71,5 @@
         "DIRECTION": "1.0, 0",
         "MAGNITUDE": 0.01
       }
-    ],
-
-    "STATES": [
-      {
-        "BODY": 0,
-        "ATTR": "S_X"
-      },
-      {
-        "BODY": 2,
-        "ATTR": "R_0"
-      }
     ]
   }
