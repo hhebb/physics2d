@@ -3,7 +3,6 @@
 > 2D physics engine for simulation & Reinforcement Learning Environment.
 
 ## About
----
 - Simple and basic Physics Engine 2D Simulator.
 - Simulator for Reinforce Learning or other Physical Environment Analysis.
 - Link to python RL (e.g. Gymnasium) library using Pybind11.
@@ -33,7 +32,6 @@ make physics
 ```
 
 ## C++ Physics Engine Simulation Example (with legacy OpenGL)
----
 > Chain (revolute joint)
 
 ![](/images/chain_1.gif)
@@ -66,11 +64,12 @@ make physics
 
 
 ## Python RL Rendering (with modern OpenGL)
----
 * C++ physics info --> python window.
 
+> cartpole
 ![](/images/gym_cartpole.gif)
 
+> snake
 ![](/images/gym_snake.gif)
 
 
@@ -80,7 +79,6 @@ make physics
 
 
 ## Usage
----
 * simulator
     
 ```
@@ -100,7 +98,6 @@ python run.py
 
 
 ## Detatil
----
 
 ### Used Theory
 
@@ -131,7 +128,6 @@ python run.py
 - class diagram
 
 ## Further Work
----
 
 - Function
     - Interfere physics module, add command and apply.
