@@ -129,7 +129,7 @@ def main():
     while not glfwWindowShouldClose(window):
         # get vertices
         a = -1.0 if np.random.random() > .5 else 1.0
-        s, r, d, info = env.step([a])
+        s, r, d, info = env.step([np.random.random(), np.random.random(), np.random.random()])
         objs = env.environment.GetEnvRenderVertices()
         
         vertices = glm.array(glm.float32, *[c for obj in objs for c in obj])
@@ -158,6 +158,7 @@ def main():
 
 
 if __name__ == "__main__":
-    env = gym.make('envs/cartpole-v0')
+    # env = gym.make('envs/cartpole-v0')
+    env = gym.make('envs/snake-v0')
     s, info = env.reset()
     main()

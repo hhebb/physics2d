@@ -147,54 +147,6 @@ void Environment::Parse(string path)
 
 }
 
-void Environment::FilterState()
-{
-    // comment
-    stateList.clear();
-
-    for (int i = 0; i < statesCount; i ++)
-    {
-        // define
-        int body;
-        string attr, axis;
-        SCALAR s;
-
-        // parse
-        body = states[i]["BODY"].asInt();        
-        vector<string> tmp = Split(states[i]["ATTR"].asString(), '_');
-
-        attr = tmp[0];
-        axis = tmp[1];
-
-        char attrc = attr[0];
-        switch (attrc)
-        {
-        case 'S': // position
-            if (axis == "X")
-                s = this->bodies[body].GetPosition().x;
-            else if (axis == "Y")
-                s = this->bodies[body].GetPosition().y;
-            break;
-        case 'V': // velocity
-            if (axis == "X")
-                s = this->bodies[body].GetVelocity().x;
-            else if (axis == "Y")
-                s = this->bodies[body].GetVelocity().y;
-            break;
-        case 'R': //rotation
-            s = this->bodies[body].GetRotation();
-            break;
-        case 'O': // angular velocity
-            s = this->bodies[body].GetAngularVelocity();
-            break;
-        default:
-            break;
-        }
-
-        stateList.push_back(s);
-    }
-}
-
 vector<string> Environment::Split(string str, char delim)
 {
     vector<string> result;
@@ -467,8 +419,6 @@ void Environment::Step(vector<SCALAR> action)
         tmp_state.push_back(bodies[i].GetPosition());
         tmp_state.push_back(bodies[i].GetVelocity());
     }
-
-    FilterState();
 }
 
 vector<vector<SCALAR>> Environment::GetEnvRenderVertices()

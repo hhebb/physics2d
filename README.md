@@ -1,10 +1,12 @@
-# Physics2D Simulator
+# Physics2D Simulator for RL
 
-> Personal Project
+> 2D physics engine for simulation & Reinforcement Learning Environment.
 
 ## About
+---
 - Simple and basic Physics Engine 2D Simulator.
 - Simulator for Reinforce Learning or other Physical Environment Analysis.
+- Link to python RL (e.g. Gymnasium) library using Pybind11.
 
 
 ### Environment
@@ -14,7 +16,8 @@
 - Qt5
 - OpenGL
 
-### dependencies
+
+### install dependencies
 ```
 sh dependencies.sh
 ```
@@ -29,8 +32,8 @@ make physics
 
 ```
 
-## ScreenShots
-
+## C++ Physics Engine Simulation Example (with legacy OpenGL)
+---
 > Chain (revolute joint)
 
 ![](/images/chain_1.gif)
@@ -49,20 +52,55 @@ make physics
 ![](/images/snake.gif)
 
 
-
 ### Function
 
-- Basic Dynamics, Collision, Joint physics operation.
-- Step by Step physics simulate.
-- Pause / Restart simulation.
-- Change some physics pipeline property
-    - Velocity Collision Iterator.
-    - Position Collision Iterator.
-    - Velocity JointIterator.
-    - Velocity Joint Iterator.
+* Physics Simulation
+    - Basic Dynamics, Collision, Joint physics operation.
+    - Step by Step physics simulate.
+    - Pause / Restart simulation.
+    - Change some physics pipeline property
+        - Velocity Collision Iterator.
+        - Position Collision Iterator.
+        - Velocity JointIterator.
+        - Velocity Joint Iterator.
+
+
+## Python RL Rendering (with modern OpenGL)
+---
+* C++ physics info --> python window.
+
+![](/images/gym_cartpole.gif)
+
+![](/images/gym_snake.gif)
+
+
+### Bind to Python
+* Support Reinforcement Learning Library (Gymnasium) link.
+* Pybind11 binding.
+
+
+## Usage
+---
+* simulator
+    
+```
+# run physics simulator GUI
+
+cd build/src
+./physics
+```
+
+* RL env
+```
+# run gymnasium environment
+
+cd python/src/envs
+python run.py
+```
+
 
 ## Detatil
-
+---
 
 ### Used Theory
 
@@ -86,19 +124,17 @@ make physics
 
 - Qt
 - GL
+- Pybind11
 
 ### Architecture
 
 - class diagram
 
 ## Further Work
-
+---
 
 - Function
-    - Transfer single step physics property to other module.
     - Interfere physics module, add command and apply.
     - Accept command from User, external modules.
-- Module
-    - Reinforcement Learning Module
 - New Version
     - 3D Physics Engine

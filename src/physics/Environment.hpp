@@ -55,7 +55,6 @@ public:
     bool ready;
     Environment(string envName);
     void Parse(string path);
-    void FilterState();
     vector<string> Split(string str, char delim);
     State GetState();
     void Init(string name);
