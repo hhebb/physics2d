@@ -67,9 +67,11 @@ make physics
 * C++ physics info --> python window.
 
 > cartpole
+
 ![](/images/gym_cartpole.gif)
 
 > snake
+
 ![](/images/gym_snake.gif)
 
 
